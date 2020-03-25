@@ -15,11 +15,11 @@ const Button = ({
   className,
 }) => {
   const classNames = cn(
+    className,
     'Button',
     `Button_size_${size}`,
     `Button_color_${color}`,
     icon && ['Button_iconed', `Button_iconed_${icon}`],
-    className,
   );
 
   const buttonValue = icon

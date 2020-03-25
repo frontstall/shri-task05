@@ -1,0 +1,29 @@
+@import 'styles/variables.scss';
+
+.ButtonGroup {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  @media (min-width: $tablet-width) {
+    display: block;
+  }
+  
+  &-Item {
+    margin-bottom: 12px;
+
+    @media (min-width: $tablet-width) {
+      margin-bottom: 0;
+      margin-right: 8px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+
+      @media (min-width: $tablet-width) {
+        margin-right: 0;
+      }
+    }
+  }
+}

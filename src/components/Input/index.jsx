@@ -14,14 +14,15 @@ const Input = ({
   placeholder = '',
   disabled = false,
   className,
+  id,
 }) => {
   const classNames = cn(
+    className,
     'Input',
     `Input_size_${size}`,
     align && `Input_align_${align}`,
     fluid && 'Input_fluid',
     clearable && 'Input_clearable',
-    className,
   );
 
   return (
@@ -32,6 +33,7 @@ const Input = ({
       type="text"
       disabled={disabled}
       placeholder={placeholder}
+      id={id}
     />
   );
 };
