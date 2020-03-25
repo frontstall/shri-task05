@@ -1,10 +1,27 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
+
+import {
+  Main,
+  Settings,
+} from 'features';
 
 function App() {
   return (
-    <div className="App">
-      lalala
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route path="/settings">
+          <Settings />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
