@@ -12,21 +12,23 @@ const Button = ({
   icon,
   children,
   href = '#',
+  className,
 }) => {
-  const className = cn(
+  const classNames = cn(
     'Button',
     `Button_size_${size}`,
     `Button_color_${color}`,
     icon && ['Button_iconed', `Button_iconed_${icon}`],
+    className,
   );
 
   const buttonValue = icon
-    ? <span className="Button-Text">{children}</span>
+    ? <span classNames="Button-Text">{children}</span>
     : children;
   return asLink
     ? (
       <a
-        className={className}
+        className={classNames}
         href={href}
       >
         {buttonValue}
@@ -34,7 +36,7 @@ const Button = ({
     )
     : (
       <button
-        className={className}
+        className={classNames}
         type={type}
       >
         {buttonValue}
