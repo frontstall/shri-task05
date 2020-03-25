@@ -6,7 +6,7 @@
       "features/*": ["features/*"],
       "components/*": ["components/*"],
       "styles/*": ["styles/*"],
-      "img/*": ["../public/img/*"]
+      "img/*": ["img/*"]
     }
   }
 }

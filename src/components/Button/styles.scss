@@ -63,7 +63,7 @@
 
     &_gear {
       &::before {
-        content: url('/public/img/gear.svg');
+        content: url('../../img/gear.svg');
         width: 12px;
         height: 14px;
       }
@@ -71,7 +71,7 @@
 
     &_run {
       &::before {
-        content: url('/public/img/run.svg');
+        content: url('../../img/run.svg');
         width: 9px;
         height: 14px;
       }
@@ -79,7 +79,7 @@
 
     &_refresh {
       &::before {
-        content: url('/public/img/refresh.svg');
+        content: url('../../img/refresh.svg');
         width: 12px;
         height: 12px;
       }

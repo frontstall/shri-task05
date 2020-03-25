@@ -20,16 +20,26 @@ const Button = ({
     icon && ['Button_iconed', `Button_iconed_${icon}`],
   );
 
+  const buttonValue = icon
+    ? <span className="Button-Text">{children}</span>
+    : children;
   return asLink
     ? (
+      <a
+        className={className}
+        href={href}
+      >
+        {buttonValue}
+      </a>
+    )
+    : (
       <button
         className={className}
         type={type}
       >
-        {children}
+        {buttonValue}
       </button>
-    )
-    : <a className={className} href={href}>{children}</a>;
+    );
 };
 
 export default Button;

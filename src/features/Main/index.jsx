@@ -4,7 +4,7 @@ import Button from 'components/Button';
 
 const Main = () => (
   <div>
-    <Button>lala</Button>
+    <Button icon="refresh">efresh</Button>
   </div>
 );
 
