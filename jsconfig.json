@@ -1,9 +1,12 @@
 {
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
-      "features/*": ["features/*"]
+      "features/*": ["features/*"],
+      "components/*": ["components/*"],
+      "styles/*": ["styles/*"],
+      "img/*": ["../public/img/*"]
     }
   }
 }

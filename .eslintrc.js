@@ -22,6 +22,8 @@ module.exports = {
     'react',
   ],
   rules: {
+    "react/prop-types": "off",
+    "react/button-has-type": "off"
   },
   settings: {
     'import/resolver': {

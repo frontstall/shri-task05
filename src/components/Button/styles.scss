@@ -1,0 +1,98 @@
+@import 'styles/variables.scss';
+
+.Button {
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+
+  &_size {
+    &_s {
+      padding: 7px 13px;
+      font-size: var(--font-size_s);
+
+      &:focus {
+        padding: 5px 11px;
+      }
+    }
+
+    &_m {
+      padding: 11px 20px;
+      font-size: var(--font-size_s);
+
+      &:focus {
+        padding: 9px 18px;
+      }
+    }
+  }
+
+  &_color {
+    &_default {
+      background-color: var(--color_control);
+      color: var(--font-color_accent);
+
+      &:hover {
+        background-color: var(--color_control_hovered);
+      }
+
+      &:focus {
+        border: 2px solid var(--color_control_border);
+        outline: none;
+      }
+    }
+
+    &_accent {
+      background-color: var(--color_accent);
+      color: var(--font-color_accent);
+
+      &:hover {
+        background-color: var(--color_accent_hovered);
+      }
+
+      &:focus {
+        border: 2px solid var(--color_accent_border);
+        outline: none;
+      }
+    }
+  }
+
+  &_iconed {
+    display: flex;
+    align-items: center;
+
+    &_gear {
+      &::before {
+        content: url('/public/img/gear.svg');
+        width: 12px;
+        height: 14px;
+      }
+    }
+
+    &_run {
+      &::before {
+        content: url('/public/img/run.svg');
+        width: 9px;
+        height: 14px;
+      }
+    }
+
+    &_refresh {
+      &::before {
+        content: url('/public/img/refresh.svg');
+        width: 12px;
+        height: 12px;
+      }
+    }
+    
+
+    .Button-Text {
+      display: none;
+
+      @media (min-width: $tablet-width) {
+        display: inline;
+        margin-left: 6px;
+      }
+    }
+  }
+}

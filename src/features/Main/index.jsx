@@ -1,5 +1,11 @@
 import React from 'react';
 
-const Main = () => <div>Main</div>;
+import Button from 'components/Button';
+
+const Main = () => (
+  <div>
+    <Button>lala</Button>
+  </div>
+);
 
 export default Main;
