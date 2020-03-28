@@ -1,16 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
 const Input = ({
-  clearable,
-  fluid,
+  clearable = false,
+  fluid = false,
   size = 's',
-  align = 'right',
+  align,
   onChange,
-  value,
+  value = '',
   placeholder = '',
   disabled = false,
   className,
@@ -21,7 +22,6 @@ const Input = ({
     'Input',
     `Input_size_${size}`,
     align && `Input_align_${align}`,
-    fluid && 'Input_fluid',
     clearable && 'Input_clearable',
   );
 
@@ -36,6 +36,30 @@ const Input = ({
       id={id}
     />
   );
+};
+
+Input.propTypes = {
+  clearable: PropTypes.bool,
+  size: PropTypes.oneOf(['s', 'max']),
+  align: PropTypes.oneOf(['right']),
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
+
+Input.defaultProps = {
+  clearable: false,
+  fluid: false,
+  size: 's',
+  align: null,
+  onChange: () => {},
+  value: '',
+  placeholder: '',
+  disabled: false,
+  className: '',
 };
 
 export default Input;

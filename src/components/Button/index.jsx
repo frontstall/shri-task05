@@ -23,20 +23,21 @@ const Button = ({
     icon && ['Button_iconed', `Button_iconed_${icon}`],
   );
 
-  const buttonValue = icon
+  const buttonContent = icon
     ? (
       <div className="Button-Content">
         <span className="Button-Text">{children}</span>
       </div>
     )
     : children;
+
   return asLink
     ? (
       <a
         className={classNames}
         href={href}
       >
-        {buttonValue}
+        {buttonContent}
       </a>
     )
     : (
@@ -44,7 +45,7 @@ const Button = ({
         className={classNames}
         type={type}
       >
-        {buttonValue}
+        {buttonContent}
       </button>
     );
 };
@@ -55,7 +56,7 @@ Button.propTypes = {
   asLink: PropTypes.bool,
   type: PropTypes.oneOf(['button', 'submit']),
   icon: PropTypes.oneOf(['gear', 'run', 'refresh']),
-  children: PropTypes.string,
+  children: PropTypes.node.isRequired,
   href: PropTypes.string,
   className: PropTypes.string,
 };
@@ -67,7 +68,6 @@ Button.defaultProps = {
   type: 'button',
   href: '#',
   icon: null,
-  children: '',
   className: '',
 };
 

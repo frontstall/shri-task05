@@ -18,14 +18,13 @@
     padding-right: 32px;
   }
 
-  &_fluid {
-    display: block;
-    width: 100%;
-  }
-
   &_size {
     &_s {
       width: 52px;
+    }
+
+    &_max {
+      width: 100%;
     }
   }
 

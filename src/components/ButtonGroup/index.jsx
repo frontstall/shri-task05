@@ -1,4 +1,5 @@
 import React, { cloneElement, Children } from 'react';
+import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
@@ -20,6 +21,15 @@ const ButtonGroup = ({
       ))}
     </div>
   );
+};
+
+ButtonGroup.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+};
+
+ButtonGroup.defaultProps = {
+  className: '',
 };
 
 export default ButtonGroup;
