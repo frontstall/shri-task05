@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
@@ -23,7 +24,11 @@ const Button = ({
   );
 
   const buttonValue = icon
-    ? <span classNames="Button-Text">{children}</span>
+    ? (
+      <div className="Button-Content">
+        <span className="Button-Text">{children}</span>
+      </div>
+    )
     : children;
   return asLink
     ? (
@@ -42,6 +47,28 @@ const Button = ({
         {buttonValue}
       </button>
     );
+};
+
+Button.propTypes = {
+  size: PropTypes.oneOf(['s', 'm']),
+  color: PropTypes.oneOf(['default', 'accent']),
+  asLink: PropTypes.bool,
+  type: PropTypes.oneOf(['button', 'submit']),
+  icon: PropTypes.oneOf(['gear', 'run', 'refresh']),
+  children: PropTypes.string,
+  href: PropTypes.string,
+  className: PropTypes.string,
+};
+
+Button.defaultProps = {
+  size: 'm',
+  color: 'default',
+  asLink: false,
+  type: 'button',
+  href: '#',
+  icon: null,
+  children: '',
+  className: '',
 };
 
 export default Button;

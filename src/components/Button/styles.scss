@@ -58,41 +58,57 @@
   }
 
   &_iconed {
-    display: flex;
-    align-items: center;
-
     &_gear {
-      &::before {
-        content: url('../../img/gear.svg');
-        width: 12px;
-        height: 14px;
+      .Button-Content {
+        &::before {
+          background-image: url('../../img/gear.svg');
+          width: 12px;
+        }
       }
     }
 
     &_run {
-      &::before {
-        content: url('../../img/run.svg');
-        width: 9px;
-        height: 14px;
+      .Button-Content {
+        &::before {
+          background-image: url('../../img/run.svg');
+          width: 9px;
+        }
       }
     }
 
     &_refresh {
-      &::before {
-        content: url('../../img/refresh.svg');
-        width: 12px;
-        height: 12px;
+      .Button-Content {
+        &::before {
+          background-image: url('../../img/refresh.svg');
+          width: 12px;
+        }
       }
     }
-    
+  }
+}
 
-    .Button-Text {
-      display: none;
+.Button-Content {
+  display: flex;
+  align-items: center;
 
-      @media (min-width: $tablet-width) {
-        display: inline;
-        margin-left: 6px;
-      }
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    @media (min-width: $tablet-width) {
+      margin-right: 6px;
     }
+  }
+}
+
+.Button-Text {
+  display: none;
+  
+  @media (min-width: $tablet-width) {
+    display: inline;
   }
 }
