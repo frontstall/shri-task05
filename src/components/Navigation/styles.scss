@@ -1,0 +1,32 @@
+@import 'styles/variables.scss';
+
+.Navigation {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-bottom: 8px;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: 0px;
+  }
+
+  &-Item {
+    margin-right: 12px;
+    list-style: none;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &-Link {
+    cursor: pointer;
+    color: var(--font-color_default);
+
+    &:hover, &:focus {
+      opacity: 0.5;
+    }
+  }
+}

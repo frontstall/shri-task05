@@ -1,0 +1,32 @@
+.InputGroup {
+
+  &_inline {
+    .InputGroup-Input {
+      margin: 0 8px;
+    }
+  }
+
+  &-Label {
+    display: block;
+    margin: 0;
+    margin-bottom: 6px;
+  }
+
+  &-Wrapper {
+    position: relative;
+  }
+
+  &-Icon {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    bottom: 11px;
+    right: 11px;
+    border: none;
+    background-image: url('../../img/clear.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}

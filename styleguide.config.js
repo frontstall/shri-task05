@@ -4,9 +4,11 @@ module.exports = {
     StyleGuide: {
       '@global body': {
         fontFamily: 'Helvetica',
+        fontSize: '13px',
+        lineHeight: '15px',
       },
       '@global a': {
-        textDecoration: 'none,',
+        textDecoration: 'none',
       },
       '@global *': {
         boxSizing: 'border-box',

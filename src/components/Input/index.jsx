@@ -7,7 +7,6 @@ import './styles.scss';
 
 const Input = ({
   clearable = false,
-  fluid = false,
   size = 's',
   align,
   onChange,
@@ -52,7 +51,6 @@ Input.propTypes = {
 
 Input.defaultProps = {
   clearable: false,
-  fluid: false,
   size: 's',
   align: null,
   onChange: () => {},
