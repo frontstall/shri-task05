@@ -90,6 +90,7 @@
 .Button-Content {
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   &::before {
     content: '';
@@ -107,6 +108,7 @@
 
 .Button-Text {
   display: none;
+  cursor: pointer;
   
   @media (min-width: $tablet-width) {
     display: inline;

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import './styles.scss';
+import { Link } from 'react-router-dom';
 
 const Button = ({
   size = 'm',
@@ -33,12 +34,12 @@ const Button = ({
 
   return asLink
     ? (
-      <a
+      <Link
         className={classNames}
-        href={href}
+        to={href}
       >
         {buttonContent}
-      </a>
+      </Link>
     )
     : (
       <button

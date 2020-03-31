@@ -4,6 +4,9 @@ import ButtonGroup from './ButtonGroup';
 import InputGroup from './InputGroup';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import Header from './Header';
+import Menu from './Menu';
+import Placeholder from './Placeholder';
 
 export {
   Button,
@@ -12,4 +15,7 @@ export {
   InputGroup,
   Navigation,
   Footer,
+  Header,
+  Menu,
+  Placeholder,
 };

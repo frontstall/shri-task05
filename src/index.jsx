@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import 'normalize.css/normalize.css';
-import './styles/global.scss';
-import './styles/fonts.scss';
+import './styles/index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
