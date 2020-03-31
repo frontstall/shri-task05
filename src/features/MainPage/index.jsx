@@ -1,11 +1,12 @@
 import React from 'react';
 
 import {
-  Footer,
-  Navigation,
-  Header,
-  Menu,
   Button,
+  Footer,
+  HeaderUI,
+  Heading,
+  Menu,
+  Navigation,
   Placeholder,
 } from 'components';
 
@@ -27,15 +28,22 @@ const copyrightRoutes = [
   },
 ];
 
-const Main = () => (
+const MainPage = () => (
   <div className="MainLayout">
-    <Header>
-      <Menu>
-        <Button asLink size="s" icon="gear" href="settings">
-          Settings
-        </Button>
-      </Menu>
-    </Header>
+    <HeaderUI.Container>
+      <HeaderUI.Logo>
+        <Heading>
+          School CI server
+        </Heading>
+      </HeaderUI.Logo>
+      <HeaderUI.Menu>
+        <Menu>
+          <Button asLink size="s" icon="gear" href="settings">
+            Settings
+          </Button>
+        </Menu>
+      </HeaderUI.Menu>
+    </HeaderUI.Container>
     <main className="Main Main_aligned_center MainLayout-Content">
       <div className="Main-Container">
         <Placeholder
@@ -51,4 +59,4 @@ const Main = () => (
   </div>
 );
 
-export default Main;
+export default MainPage;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Header,
+  HeaderUI,
   Heading,
   FieldsetUI,
   InputGroup,
@@ -17,9 +17,15 @@ const {
   Row,
 } = FieldsetUI;
 
-const Settings = () => (
+const SettingsPage = () => (
   <div className="MainLayout">
-    <Header />
+    <HeaderUI.Container>
+      <HeaderUI.Logo>
+        <Heading>
+          School CI server
+        </Heading>
+      </HeaderUI.Logo>
+    </HeaderUI.Container>
     <main className="Main MainLayout-Content">
       <div className="Main-Container">
         <Heading level={2} size="m" color="accent">
@@ -91,4 +97,4 @@ const Settings = () => (
   </div>
 );
 
-export default Settings;
+export default SettingsPage;

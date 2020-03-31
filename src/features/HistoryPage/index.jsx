@@ -1,94 +1,70 @@
 import React from 'react';
 
 import {
-  Header,
-  Heading,
-  FieldsetUI,
-  InputGroup,
-  ButtonGroup,
+  BuildCard,
   Button,
-  Input,
-  Text,
+  HeaderUI,
+  Heading,
+  Menu,
+  Pagination,
 } from 'components';
 
-const {
-  Fieldset,
-  Legend,
-  Row,
-} = FieldsetUI;
+import useHistory from './hooks';
 
-const Settings = () => (
-  <div className="MainLayout">
-    <Header />
-    <main className="Main MainLayout-Content">
-      <div className="Main-Container">
-        <Heading level={2} size="m" color="accent">
-          Settings
-        </Heading>
-        <form>
-          <Fieldset>
-            <Legend>
-              Configure repository connection and synchronization settings.
-            </Legend>
-            <Row>
-              <InputGroup
-                clearable
-                id="repository"
-                placeholder="user-name/repo-name"
-              >
-                GitHub repository
-                <Text color="danger">*</Text>
-              </InputGroup>
-            </Row>
-            <Row>
-              <InputGroup
-                clearable
-                id="command"
-                placeholder="npm ci && npm run build"
-              >
-                Build command
-              </InputGroup>
-            </Row>
-            <Row>
-              <InputGroup
-                clearable
-                id="branch"
-                placeholder="master"
-              >
-                Main branch
-              </InputGroup>
-            </Row>
-            <Row>
-              Synchronize every
-              <Input
-                id="interval"
-                placeholder="10"
-                size="s"
-                align="right"
-                inline
-              >
-                Main branch
-              </Input>
-              minutes
-            </Row>
-            <Row>
-              <ButtonGroup>
-                <Button
-                  type="submit"
-                  color="accent"
-                >
-                  Save
-                </Button>
-                <Button>
-                  Cancel
-                </Button>
-              </ButtonGroup>
-            </Row>
-          </Fieldset>
-        </form>
-      </div>
-    </main>
-  </div>
-);
+const HistoryPage = () => {
+  const {
+    builds,
+    loading,
+  } = useHistory();
 
-export default Settings;
+  return (
+    <div className="MainLayout">
+      <HeaderUI.Container>
+        <HeaderUI.Logo>
+          <Heading>
+            School CI server
+          </Heading>
+        </HeaderUI.Logo>
+        <HeaderUI.Menu>
+          <Menu>
+            <Button size="s" icon="run">
+              Run build
+            </Button>
+            <Button asLink size="s" icon="gear" href="settings" />
+          </Menu>
+        </HeaderUI.Menu>
+      </HeaderUI.Container>
+      <main className="Main MainLayout-Content">
+        <div className="Main-Container">
+          <Pagination loading={loading}>
+            {builds.map(({
+              buildId,
+              status,
+              commitName,
+              branch,
+              hash,
+              author,
+              date,
+              duration,
+            }) => (
+              <BuildCard
+                adaptive
+                key={buildId}
+                buildId={buildId}
+                status={status}
+                commitName={commitName}
+                branch={branch}
+                hash={hash}
+                author={author}
+                date={date}
+                duration={duration}
+              />
+            ))}
+          </Pagination>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default HistoryPage;

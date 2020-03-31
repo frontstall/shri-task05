@@ -22,10 +22,10 @@ function App() {
         <Route path="/settings">
           <SettingsPage />
         </Route>
-        <Route path="/build/:buildId">
+        <Route path="/builds/:buildId">
           <BuildPage />
         </Route>
-        <Route path="/history/:repoId">
+        <Route path="/builds/">
           <HistoryPage />
         </Route>
       </Switch>

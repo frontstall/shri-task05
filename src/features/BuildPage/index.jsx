@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  Header,
   Heading,
   FieldsetUI,
   InputGroup,
@@ -19,7 +18,6 @@ const {
 
 const Settings = () => (
   <div className="MainLayout">
-    <Header />
     <main className="Main MainLayout-Content">
       <div className="Main-Container">
         <Heading level={2} size="m" color="accent">
