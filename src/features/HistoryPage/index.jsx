@@ -20,9 +20,9 @@ const HistoryPage = () => {
   return (
     <div className="MainLayout">
       <HeaderUI.Container>
-        <HeaderUI.Logo>
-          <Heading>
-            School CI server
+        <HeaderUI.Logo route="#">
+          <Heading color="accent">
+            philip1967/my-awesome-repo
           </Heading>
         </HeaderUI.Logo>
         <HeaderUI.Menu>

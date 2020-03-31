@@ -31,18 +31,20 @@ Container.defaultProps = {
   children: '',
 };
 
-const Logo = ({ children }) => (
-  <Link to="/" className="Header-Logo">
+const Logo = ({ children, route = '#' }) => (
+  <Link to={route} className="Header-Logo">
     {children}
   </Link>
 );
 
 Logo.propTypes = {
   children: PropTypes.node,
+  route: PropTypes.string,
 };
 
 Logo.defaultProps = {
   children: '',
+  route: '#',
 };
 
 const Menu = ({ children }) => (

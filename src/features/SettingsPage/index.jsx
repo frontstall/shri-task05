@@ -20,7 +20,7 @@ const {
 const SettingsPage = () => (
   <div className="MainLayout">
     <HeaderUI.Container>
-      <HeaderUI.Logo>
+      <HeaderUI.Logo route="/">
         <Heading>
           School CI server
         </Heading>

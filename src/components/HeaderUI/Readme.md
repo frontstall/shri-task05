@@ -1,4 +1,4 @@
-Хэдер. В качестве children принимает компонент Menu.
+Элементы для конструирования хэдера.
 
 ```js padded
 import { BrowserRouter } from 'react-router-dom';
