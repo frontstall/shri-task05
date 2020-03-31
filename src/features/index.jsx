@@ -1,7 +1,11 @@
-import Settings from './Settings';
-import Main from './Main';
+import BuildPage from './BuildPage';
+import HistoryPage from './HistoryPage';
+import MainPage from './MainPage';
+import SettingsPage from './SettingsPage';
 
 export {
-  Main,
-  Settings,
+  BuildPage,
+  HistoryPage,
+  MainPage,
+  SettingsPage,
 };

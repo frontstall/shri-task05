@@ -6,8 +6,10 @@ import {
 } from 'react-router-dom';
 
 import {
-  Main,
-  Settings,
+  BuildPage,
+  HistoryPage,
+  MainPage,
+  SettingsPage,
 } from 'features';
 
 function App() {
@@ -15,10 +17,16 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Main />
+          <MainPage />
         </Route>
         <Route path="/settings">
-          <Settings />
+          <SettingsPage />
+        </Route>
+        <Route path="/build/:buildId">
+          <BuildPage />
+        </Route>
+        <Route path="/history/:repoId">
+          <HistoryPage />
         </Route>
       </Switch>
     </Router>
