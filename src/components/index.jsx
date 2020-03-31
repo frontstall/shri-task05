@@ -1,27 +1,31 @@
+import BuildCard from './BuildCard';
 import Button from './Button';
-import Input from './Input';
 import ButtonGroup from './ButtonGroup';
-import InputGroup from './InputGroup';
-import Navigation from './Navigation';
-import Footer from './Footer';
-import Header from './Header';
-import Menu from './Menu';
-import Placeholder from './Placeholder';
-import Heading from './Heading';
 import FieldsetUI from './FieldsetUI';
+import Footer from './Footer';
+import HeaderUI from './HeaderUI';
+import Heading from './Heading';
+import Input from './Input';
+import InputGroup from './InputGroup';
+import Menu from './Menu';
+import Navigation from './Navigation';
+import Pagination from './Pagination';
+import Placeholder from './Placeholder';
 import Text from './Text';
 
 export {
+  BuildCard,
   Button,
-  Input,
   ButtonGroup,
-  InputGroup,
-  Navigation,
-  Footer,
-  Header,
-  Menu,
-  Placeholder,
-  Heading,
   FieldsetUI,
+  Footer,
+  HeaderUI,
+  Heading,
+  Input,
+  InputGroup,
+  Menu,
+  Navigation,
+  Pagination,
+  Placeholder,
   Text,
 };

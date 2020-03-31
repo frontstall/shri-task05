@@ -1,0 +1,17 @@
+.Pagination {
+  &-List {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 8px;
+  }
+
+  &-ListItem {
+    margin-bottom: 8px;
+    list-style: none;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

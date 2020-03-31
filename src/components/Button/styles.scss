@@ -99,10 +99,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-
-    @media (min-width: $tablet-width) {
-      margin-right: 6px;
-    }
   }
 }
 
@@ -112,5 +108,6 @@
   
   @media (min-width: $tablet-width) {
     display: inline;
+    margin-left: 6px;
   }
 }

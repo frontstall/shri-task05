@@ -27,7 +27,7 @@ const Button = ({
   const buttonContent = icon
     ? (
       <div className="Button-Content">
-        <span className="Button-Text">{children}</span>
+        {children && <span className="Button-Text">{children}</span>}
       </div>
     )
     : children;
@@ -57,7 +57,7 @@ Button.propTypes = {
   asLink: PropTypes.bool,
   type: PropTypes.oneOf(['button', 'submit']),
   icon: PropTypes.oneOf(['gear', 'run', 'refresh']),
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   href: PropTypes.string,
   className: PropTypes.string,
 };
@@ -67,6 +67,7 @@ Button.defaultProps = {
   color: 'default',
   asLink: false,
   type: 'button',
+  children: '',
   href: '#',
   icon: null,
   className: '',
