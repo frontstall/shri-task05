@@ -6,7 +6,8 @@
       "features/*": ["features/*"],
       "components/*": ["components/*"],
       "styles/*": ["styles/*"],
-      "img/*": ["img/*"]
+      "img/*": ["img/*"],
+      "config/*": ["config/*"]
     }
   }
 }

@@ -3,13 +3,22 @@ import React from 'react';
 import {
   BuildCard,
   Button,
+  Footer,
   HeaderUI,
   Heading,
   Menu,
+  Navigation,
   Pagination,
 } from 'components';
+import routes from 'config';
 
 import useHistory from './hooks';
+
+const {
+  navigationRoutes,
+  copyrightRoutes,
+} = routes;
+
 
 const HistoryPage = () => {
   const {
@@ -49,6 +58,7 @@ const HistoryPage = () => {
             }) => (
               <BuildCard
                 adaptive
+                clickable
                 key={buildId}
                 buildId={buildId}
                 status={status}
@@ -63,6 +73,10 @@ const HistoryPage = () => {
           </Pagination>
         </div>
       </main>
+      <Footer>
+        <Navigation routes={navigationRoutes} />
+        <Navigation routes={copyrightRoutes} />
+      </Footer>
     </div>
   );
 };

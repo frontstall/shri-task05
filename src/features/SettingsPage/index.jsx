@@ -1,15 +1,23 @@
 import React from 'react';
 
 import {
+  Button,
+  ButtonGroup,
+  FieldsetUI,
+  Footer,
   HeaderUI,
   Heading,
-  FieldsetUI,
-  InputGroup,
-  ButtonGroup,
-  Button,
   Input,
+  InputGroup,
+  Navigation,
   Text,
 } from 'components';
+import routes from 'config';
+
+const {
+  navigationRoutes,
+  copyrightRoutes,
+} = routes;
 
 const {
   Fieldset,
@@ -94,6 +102,10 @@ const SettingsPage = () => (
         </form>
       </div>
     </main>
+    <Footer>
+      <Navigation routes={navigationRoutes} />
+      <Navigation routes={copyrightRoutes} />
+    </Footer>
   </div>
 );
 

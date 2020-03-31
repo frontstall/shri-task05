@@ -6,8 +6,37 @@ import cn from 'classnames';
 
 import './styles.scss';
 
+const Wrapper = ({
+  clickable,
+  route = '#',
+  className,
+  children,
+}) => {
+  const classNames = cn(
+    className,
+    clickable && 'Build_clickable',
+  );
+
+  return clickable
+    ? <Link to={route} className={classNames}>{children}</Link>
+    : <div className={classNames}>{children}</div>;
+};
+
+Wrapper.propTypes = {
+  className: PropTypes.string.isRequired,
+  clickable: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  route: PropTypes.string,
+};
+
+Wrapper.defaultProps = {
+  clickable: false,
+  route: '#',
+};
+
 const BuildCard = ({
   className,
+  clickable = false,
   buildId,
   adaptive = false,
   status,
@@ -26,7 +55,11 @@ const BuildCard = ({
   );
 
   return (
-    <Link to={`builds/${buildId}`} className={classNames}>
+    <Wrapper
+      route={`/builds/${buildId}`}
+      className={classNames}
+      clickable={clickable}
+    >
       <div className="Build-Info">
         <div className="Build-Heading">
           <h2 className="Build-Number">
@@ -58,12 +91,13 @@ const BuildCard = ({
           {duration}
         </span>
       </div>
-    </Link>
+    </Wrapper>
   );
 };
 
 BuildCard.propTypes = {
   className: PropTypes.string,
+  clickable: PropTypes.bool,
   buildId: PropTypes.string.isRequired,
   adaptive: PropTypes.bool,
   status: PropTypes.oneOf(['success', 'danger', 'warning']).isRequired,
@@ -78,6 +112,7 @@ BuildCard.propTypes = {
 BuildCard.defaultProps = {
   adaptive: false,
   className: '',
+  clickable: false,
 };
 
 export default BuildCard;

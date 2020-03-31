@@ -9,24 +9,12 @@ import {
   Navigation,
   Placeholder,
 } from 'components';
+import routes from 'config';
 
-const navigationRoutes = [
-  {
-    route: '#',
-    name: 'Support',
-  },
-  {
-    route: '#',
-    name: 'Learning',
-  },
-];
-
-const copyrightRoutes = [
-  {
-    route: '#',
-    name: '\u00A9 2020 Your Name',
-  },
-];
+const {
+  navigationRoutes,
+  copyrightRoutes,
+} = routes;
 
 const MainPage = () => (
   <div className="MainLayout">

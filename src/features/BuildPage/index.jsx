@@ -1,92 +1,85 @@
 import React from 'react';
 
 import {
-  Heading,
-  FieldsetUI,
-  InputGroup,
-  ButtonGroup,
+  BuildCard,
   Button,
-  Input,
-  Text,
+  Footer,
+  HeaderUI,
+  Heading,
+  Menu,
+  Navigation,
 } from 'components';
+import routes from 'config';
+
+import useBuild from './hooks';
 
 const {
-  Fieldset,
-  Legend,
-  Row,
-} = FieldsetUI;
+  navigationRoutes,
+  copyrightRoutes,
+} = routes;
 
-const Settings = () => (
-  <div className="MainLayout">
-    <main className="Main MainLayout-Content">
-      <div className="Main-Container">
-        <Heading level={2} size="m" color="accent">
-          Settings
-        </Heading>
-        <form>
-          <Fieldset>
-            <Legend>
-              Configure repository connection and synchronization settings.
-            </Legend>
-            <Row>
-              <InputGroup
-                clearable
-                id="repository"
-                placeholder="user-name/repo-name"
-              >
-                GitHub repository
-                <Text color="danger">*</Text>
-              </InputGroup>
-            </Row>
-            <Row>
-              <InputGroup
-                clearable
-                id="command"
-                placeholder="npm ci && npm run build"
-              >
-                Build command
-              </InputGroup>
-            </Row>
-            <Row>
-              <InputGroup
-                clearable
-                id="branch"
-                placeholder="master"
-              >
-                Main branch
-              </InputGroup>
-            </Row>
-            <Row>
-              Synchronize every
-              <Input
-                id="interval"
-                placeholder="10"
-                size="s"
-                align="right"
-                inline
-              >
-                Main branch
-              </Input>
-              minutes
-            </Row>
-            <Row>
-              <ButtonGroup>
-                <Button
-                  type="submit"
-                  color="accent"
-                >
-                  Save
-                </Button>
-                <Button>
-                  Cancel
-                </Button>
-              </ButtonGroup>
-            </Row>
-          </Fieldset>
-        </form>
-      </div>
-    </main>
-  </div>
-);
 
-export default Settings;
+const BuildPage = () => {
+  const {
+    building,
+    buildLog,
+    buildId,
+    status,
+    commitName,
+    branch,
+    hash,
+    author,
+    date,
+    duration,
+  } = useBuild();
+
+  return (
+    <div className="MainLayout">
+      <HeaderUI.Container>
+        <HeaderUI.Logo route="/builds">
+          <Heading color="accent">
+            philip1967/my-awesome-repo
+          </Heading>
+        </HeaderUI.Logo>
+        <HeaderUI.Menu>
+          <Menu>
+            <Button size="s" icon="refresh">
+              Rebuild
+            </Button>
+            <Button asLink size="s" icon="gear" href="/settings" />
+          </Menu>
+        </HeaderUI.Menu>
+      </HeaderUI.Container>
+      <main className="Main MainLayout-Content">
+        <div className="BuildDetails">
+          <div className="BuildDetails-Build Main-Container">
+            <BuildCard
+              key={buildId}
+              buildId={buildId}
+              status={status}
+              commitName={commitName}
+              branch={branch}
+              hash={hash}
+              author={author}
+              date={date}
+              duration={duration}
+            />
+          </div>
+          <div className="BuildDetails-Container">
+            <pre className="BuildDetails-Flow">
+              {building
+                ? 'Building...'
+                : buildLog}
+            </pre>
+          </div>
+        </div>
+      </main>
+      <Footer>
+        <Navigation routes={navigationRoutes} />
+        <Navigation routes={copyrightRoutes} />
+      </Footer>
+    </div>
+  );
+};
+
+export default BuildPage;
