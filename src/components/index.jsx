@@ -8,6 +8,8 @@ import Header from './Header';
 import Menu from './Menu';
 import Placeholder from './Placeholder';
 import Heading from './Heading';
+import FieldsetUI from './FieldsetUI';
+import Text from './Text';
 
 export {
   Button,
@@ -20,4 +22,6 @@ export {
   Menu,
   Placeholder,
   Heading,
+  FieldsetUI,
+  Text,
 };

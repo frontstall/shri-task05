@@ -5,7 +5,8 @@
   id='3'
   placeholder='placeholder'
   clearable
-  label='Label'
   value='some value'
-/>
+>
+  Label <i>for</i> input
+</InputGroup>
 ```

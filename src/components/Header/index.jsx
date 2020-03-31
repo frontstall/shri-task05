@@ -18,7 +18,7 @@ const Header = ({ className, children }) => {
         <Link to="/" className="Header-Logo">
           <h1 className="Heading Heading_color_default Heading_size_xl">School CI server</h1>
         </Link>
-        {Children.map(children, (child) => (
+        {children && Children.map(children, (child) => (
           cloneElement(child, { className: 'Header-Menu' })
         ))}
       </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
-import { Input } from 'components';
+import Input from 'components/Input';
 
 import './styles.scss';
 
@@ -15,19 +15,21 @@ const InputGroup = ({
   disabled = false,
   className,
   id,
-  label,
+  children,
   onClear,
+  inline = false,
 }) => {
   const classNames = cn(
     className,
     'InputGroup',
+    inline && 'InputGroup_inline',
   );
 
   return (
     <div className={classNames}>
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className="InputGroup-Label" htmlFor={id}>
-        {label}
+        {children}
       </label>
       <div className="InputGroup-Wrapper">
         <Input
@@ -56,8 +58,9 @@ InputGroup.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  label: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   onClear: PropTypes.func,
+  inline: PropTypes.bool,
 };
 
 InputGroup.defaultProps = {
@@ -68,6 +71,7 @@ InputGroup.defaultProps = {
   placeholder: '',
   disabled: false,
   className: '',
+  inline: false,
 };
 
 export default InputGroup;

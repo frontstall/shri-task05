@@ -15,6 +15,7 @@ const Input = ({
   disabled = false,
   className,
   id,
+  inline = false,
 }) => {
   const classNames = cn(
     className,
@@ -22,6 +23,7 @@ const Input = ({
     `Input_size_${size}`,
     align && `Input_align_${align}`,
     clearable && 'Input_clearable',
+    inline && 'Input_inline',
   );
 
   return (
@@ -47,6 +49,7 @@ Input.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  inline: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -58,6 +61,7 @@ Input.defaultProps = {
   placeholder: '',
   disabled: false,
   className: '',
+  inline: false,
 };
 
 export default Input;
