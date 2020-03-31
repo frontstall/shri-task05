@@ -31,11 +31,8 @@ const Main = () => (
   <div className="MainLayout">
     <Header>
       <Menu>
-        <Button asLink size="s" icon="gear">
+        <Button asLink size="s" icon="gear" href="settings">
           Settings
-        </Button>
-        <Button size="s" icon="refresh">
-          Rebuild
         </Button>
       </Menu>
     </Header>
@@ -43,7 +40,7 @@ const Main = () => (
       <div className="Main-Container">
         <Placeholder
           description="Configure repository connection and synchronization settings"
-          buttonConfig={{ text: 'Open settings', route: '/settings.html' }}
+          buttonConfig={{ text: 'Open settings', route: '/settings' }}
         />
       </div>
     </main>

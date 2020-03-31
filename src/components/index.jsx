@@ -7,6 +7,7 @@ import Footer from './Footer';
 import Header from './Header';
 import Menu from './Menu';
 import Placeholder from './Placeholder';
+import Heading from './Heading';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   Header,
   Menu,
   Placeholder,
+  Heading,
 };

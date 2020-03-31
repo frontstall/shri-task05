@@ -1,0 +1,34 @@
+.Heading {
+  &_color {
+    &_default {
+      color: var(--font-color_default);
+    }
+
+    &_accent {
+      color: var(--font-color_accent);
+    }
+  }
+
+  &_size {
+    &_m {
+      font-size: var(--font-size_m);
+      line-height: var(--line-height_l);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    &_l {
+      font-size: var(--font-size_l);
+      line-height: var(--line-height_l);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    &_xl {
+      font-size: var(--font-size_xl);
+      line-height: var(--line-height_xl);
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+}
