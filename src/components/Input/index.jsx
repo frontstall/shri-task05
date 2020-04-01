@@ -16,6 +16,7 @@ const Input = ({
   className,
   id,
   inline = false,
+  type = 'text',
 }) => {
   const classNames = cn(
     className,
@@ -31,7 +32,7 @@ const Input = ({
       className={classNames}
       value={value}
       onChange={onChange}
-      type="text"
+      type={type}
       disabled={disabled}
       placeholder={placeholder}
       id={id}
@@ -50,6 +51,7 @@ Input.propTypes = {
   className: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   inline: PropTypes.bool,
+  type: PropTypes.oneOf(['text', 'number']),
 };
 
 Input.defaultProps = {
@@ -62,6 +64,7 @@ Input.defaultProps = {
   disabled: false,
   className: '',
   inline: false,
+  type: 'text',
 };
 
 export default Input;

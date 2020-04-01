@@ -1,4 +1,4 @@
-export default {
+export const footerRoutes = {
   navigationRoutes: [
     {
       route: '#',
@@ -16,3 +16,5 @@ export default {
     },
   ],
 };
+
+export const API_ROOT = 'http://localhost:3001';

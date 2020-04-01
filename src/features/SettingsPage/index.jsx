@@ -12,18 +12,12 @@ import {
   Navigation,
   Text,
 } from 'components';
-import routes from 'config';
+import { footerRoutes } from 'config';
 
 const {
   navigationRoutes,
   copyrightRoutes,
-} = routes;
-
-const {
-  Fieldset,
-  Legend,
-  Row,
-} = FieldsetUI;
+} = footerRoutes;
 
 const SettingsPage = () => (
   <div className="MainLayout">
@@ -40,11 +34,11 @@ const SettingsPage = () => (
           Settings
         </Heading>
         <form>
-          <Fieldset>
-            <Legend>
+          <FieldsetUI.Fieldset>
+            <FieldsetUI.Legend>
               Configure repository connection and synchronization settings.
-            </Legend>
-            <Row>
+            </FieldsetUI.Legend>
+            <FieldsetUI.Row>
               <InputGroup
                 clearable
                 id="repository"
@@ -53,8 +47,8 @@ const SettingsPage = () => (
                 GitHub repository
                 <Text color="danger">*</Text>
               </InputGroup>
-            </Row>
-            <Row>
+            </FieldsetUI.Row>
+            <FieldsetUI.Row>
               <InputGroup
                 clearable
                 id="command"
@@ -62,8 +56,8 @@ const SettingsPage = () => (
               >
                 Build command
               </InputGroup>
-            </Row>
-            <Row>
+            </FieldsetUI.Row>
+            <FieldsetUI.Row>
               <InputGroup
                 clearable
                 id="branch"
@@ -71,8 +65,8 @@ const SettingsPage = () => (
               >
                 Main branch
               </InputGroup>
-            </Row>
-            <Row>
+            </FieldsetUI.Row>
+            <FieldsetUI.Row>
               Synchronize every
               <Input
                 id="interval"
@@ -80,12 +74,13 @@ const SettingsPage = () => (
                 size="s"
                 align="right"
                 inline
+                type="number"
               >
                 Main branch
               </Input>
               minutes
-            </Row>
-            <Row>
+            </FieldsetUI.Row>
+            <FieldsetUI.Row>
               <ButtonGroup>
                 <Button
                   type="submit"
@@ -97,8 +92,8 @@ const SettingsPage = () => (
                   Cancel
                 </Button>
               </ButtonGroup>
-            </Row>
-          </Fieldset>
+            </FieldsetUI.Row>
+          </FieldsetUI.Fieldset>
         </form>
       </div>
     </main>

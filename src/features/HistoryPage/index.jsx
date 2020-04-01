@@ -10,14 +10,14 @@ import {
   Navigation,
   Pagination,
 } from 'components';
-import routes from 'config';
+import { footerRoutes } from 'config';
 
 import useHistory from './hooks';
 
 const {
   navigationRoutes,
   copyrightRoutes,
-} = routes;
+} = footerRoutes;
 
 
 const HistoryPage = () => {

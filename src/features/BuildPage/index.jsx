@@ -9,14 +9,14 @@ import {
   Menu,
   Navigation,
 } from 'components';
-import routes from 'config';
+import { footerRoutes } from 'config';
 
 import useBuild from './hooks';
 
 const {
   navigationRoutes,
   copyrightRoutes,
-} = routes;
+} = footerRoutes;
 
 
 const BuildPage = () => {

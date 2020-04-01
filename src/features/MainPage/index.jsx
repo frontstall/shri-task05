@@ -9,12 +9,12 @@ import {
   Navigation,
   Placeholder,
 } from 'components';
-import routes from 'config';
+import { footerRoutes } from 'config';
 
 const {
   navigationRoutes,
   copyrightRoutes,
-} = routes;
+} = footerRoutes;
 
 const MainPage = () => (
   <div className="MainLayout">
