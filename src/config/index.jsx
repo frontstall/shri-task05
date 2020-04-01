@@ -17,10 +17,17 @@ export const footerRoutes = {
   ],
 };
 
-export const API_ROOT = 'http://localhost:3001';
+export const API_ROOT = 'http://localhost:3001/api';
 
 export const ROUTES = {
   root: '/',
   settings: '/settings',
-  builds: '/builds',
+  build: '/build',
 };
+
+export const API_ROUTES = {
+  root: `${API_ROOT}/`,
+  settings: `${API_ROOT}/settings`,
+};
+
+export const DEFAULT_PERIOD = 600;

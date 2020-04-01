@@ -36,7 +36,7 @@ const BuildPage = () => {
   return (
     <div className="MainLayout">
       <HeaderUI.Container>
-        <HeaderUI.Logo route={ROUTES.builds}>
+        <HeaderUI.Logo route={ROUTES.build}>
           <Heading color="accent">
             philip1967/my-awesome-repo
           </Heading>

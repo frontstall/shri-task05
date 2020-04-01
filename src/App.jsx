@@ -24,11 +24,8 @@ function App() {
         <Route path={ROUTES.settings}>
           <SettingsPage />
         </Route>
-        <Route path={`${ROUTES.builds}:buildId"`}>
+        <Route path={`${ROUTES.build}:buildId"`}>
           <BuildPage />
-        </Route>
-        <Route path={ROUTES.builds}>
-          <HistoryPage />
         </Route>
       </Switch>
     </Router>

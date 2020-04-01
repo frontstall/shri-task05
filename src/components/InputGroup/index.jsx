@@ -18,6 +18,7 @@ const InputGroup = ({
   children,
   onClear,
   inline = false,
+  required = false,
 }) => {
   const classNames = cn(
     className,
@@ -40,6 +41,7 @@ const InputGroup = ({
           placeholder={placeholder}
           id={id}
           clearable={clearable}
+          required={required}
         />
         {clearable && value && (
           // eslint-disable-next-line jsx-a11y/control-has-associated-label
@@ -61,6 +63,7 @@ InputGroup.propTypes = {
   children: PropTypes.node.isRequired,
   onClear: PropTypes.func,
   inline: PropTypes.bool,
+  required: PropTypes.bool,
 };
 
 InputGroup.defaultProps = {
@@ -72,6 +75,7 @@ InputGroup.defaultProps = {
   disabled: false,
   className: '',
   inline: false,
+  required: false,
 };
 
 export default InputGroup;

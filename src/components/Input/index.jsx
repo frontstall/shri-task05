@@ -17,6 +17,7 @@ const Input = ({
   id,
   inline = false,
   type = 'text',
+  required = false,
 }) => {
   const classNames = cn(
     className,
@@ -36,6 +37,7 @@ const Input = ({
       disabled={disabled}
       placeholder={placeholder}
       id={id}
+      required={required}
     />
   );
 };
@@ -52,6 +54,7 @@ Input.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   inline: PropTypes.bool,
   type: PropTypes.oneOf(['text', 'number']),
+  required: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -65,6 +68,7 @@ Input.defaultProps = {
   className: '',
   inline: false,
   type: 'text',
+  required: false,
 };
 
 export default Input;

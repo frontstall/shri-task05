@@ -29,6 +29,7 @@ const SettingsPage = () => {
     onSubmit,
     loading,
     onCancel,
+    error,
   } = useForm();
 
   return (
@@ -58,6 +59,7 @@ const SettingsPage = () => {
                   onChange={getHandler('repository')}
                   onClear={() => clear('repository')}
                   value={getValue('repository')}
+                  required
                 >
                   GitHub repository
                   <Text color="danger">*</Text>
@@ -71,8 +73,10 @@ const SettingsPage = () => {
                   onChange={getHandler('command')}
                   onClear={() => clear('command')}
                   value={getValue('command')}
+                  required
                 >
                   Build command
+                  <Text color="danger">*</Text>
                 </InputGroup>
               </FieldsetUI.Row>
               <FieldsetUI.Row>
@@ -115,6 +119,12 @@ const SettingsPage = () => {
                   </Button>
                 </ButtonGroup>
               </FieldsetUI.Row>
+              {error
+                && (
+                <FieldsetUI.Row>
+                  <Text color="danger">Something went wrong. Try again later</Text>
+                </FieldsetUI.Row>
+                )}
             </FieldsetUI.Fieldset>
           </form>
         </div>

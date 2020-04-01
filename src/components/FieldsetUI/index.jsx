@@ -5,14 +5,14 @@ import cn from 'classnames';
 
 import './styles.scss';
 
-const Fieldset = ({ className, children }) => {
+const Fieldset = ({ className, children, disabled = 'false' }) => {
   const classNames = cn(
     className,
     'Fieldset',
   );
 
   return (
-    <fieldset className={classNames}>
+    <fieldset className={classNames} disabled={disabled}>
       {children}
     </fieldset>
   );
@@ -21,11 +21,13 @@ const Fieldset = ({ className, children }) => {
 Fieldset.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  disabled: PropTypes.bool,
 };
 
 Fieldset.defaultProps = {
   className: '',
   children: '',
+  disabled: false,
 };
 
 const Legend = ({ children }) => (

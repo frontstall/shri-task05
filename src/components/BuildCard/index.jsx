@@ -58,7 +58,7 @@ const BuildCard = ({
 
   return (
     <Wrapper
-      route={`${ROUTES.builds}/${buildId}`}
+      route={`${ROUTES.build}/${buildId}`}
       className={classNames}
       clickable={clickable}
     >
