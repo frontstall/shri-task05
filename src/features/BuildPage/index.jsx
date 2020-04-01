@@ -9,7 +9,7 @@ import {
   Menu,
   Navigation,
 } from 'components';
-import { footerRoutes } from 'config';
+import { footerRoutes, ROUTES } from 'config';
 
 import useBuild from './hooks';
 
@@ -36,7 +36,7 @@ const BuildPage = () => {
   return (
     <div className="MainLayout">
       <HeaderUI.Container>
-        <HeaderUI.Logo route="/builds">
+        <HeaderUI.Logo route={ROUTES.builds}>
           <Heading color="accent">
             philip1967/my-awesome-repo
           </Heading>
@@ -46,7 +46,7 @@ const BuildPage = () => {
             <Button size="s" icon="refresh">
               Rebuild
             </Button>
-            <Button asLink size="s" icon="gear" href="/settings" />
+            <Button asLink size="s" icon="gear" href={ROUTES.settings} />
           </Menu>
         </HeaderUI.Menu>
       </HeaderUI.Container>

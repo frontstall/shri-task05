@@ -10,7 +10,7 @@ import {
   Navigation,
   Pagination,
 } from 'components';
-import { footerRoutes } from 'config';
+import { footerRoutes, ROUTES } from 'config';
 
 import useHistory from './hooks';
 
@@ -29,7 +29,7 @@ const HistoryPage = () => {
   return (
     <div className="MainLayout">
       <HeaderUI.Container>
-        <HeaderUI.Logo route="#">
+        <HeaderUI.Logo route={ROUTES.root}>
           <Heading color="accent">
             philip1967/my-awesome-repo
           </Heading>
@@ -39,7 +39,7 @@ const HistoryPage = () => {
             <Button size="s" icon="run">
               Run build
             </Button>
-            <Button asLink size="s" icon="gear" href="settings" />
+            <Button asLink size="s" icon="gear" href={ROUTES.settings} />
           </Menu>
         </HeaderUI.Menu>
       </HeaderUI.Container>

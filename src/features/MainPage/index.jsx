@@ -9,7 +9,7 @@ import {
   Navigation,
   Placeholder,
 } from 'components';
-import { footerRoutes } from 'config';
+import { footerRoutes, ROUTES } from 'config';
 
 const {
   navigationRoutes,
@@ -19,14 +19,14 @@ const {
 const MainPage = () => (
   <div className="MainLayout">
     <HeaderUI.Container>
-      <HeaderUI.Logo route="#">
+      <HeaderUI.Logo route={ROUTES.root}>
         <Heading>
           School CI server
         </Heading>
       </HeaderUI.Logo>
       <HeaderUI.Menu>
         <Menu>
-          <Button asLink size="s" icon="gear" href="settings">
+          <Button asLink size="s" icon="gear" href={ROUTES.settings}>
             Settings
           </Button>
         </Menu>
@@ -36,7 +36,7 @@ const MainPage = () => (
       <div className="Main-Container">
         <Placeholder
           description="Configure repository connection and synchronization settings"
-          buttonConfig={{ text: 'Open settings', route: '/settings' }}
+          buttonConfig={{ text: 'Open settings', route: ROUTES.settings }}
         />
       </div>
     </main>

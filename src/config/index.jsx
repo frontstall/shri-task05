@@ -18,3 +18,9 @@ export const footerRoutes = {
 };
 
 export const API_ROOT = 'http://localhost:3001';
+
+export const ROUTES = {
+  root: '/',
+  settings: '/settings',
+  builds: '/builds',
+};

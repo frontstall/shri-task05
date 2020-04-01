@@ -15,6 +15,7 @@ const Button = ({
   children,
   href = '#',
   className,
+  onClick,
 }) => {
   const classNames = cn(
     className,
@@ -45,6 +46,7 @@ const Button = ({
       <button
         className={classNames}
         type={type}
+        onClick={onClick}
       >
         {buttonContent}
       </button>
@@ -60,6 +62,7 @@ Button.propTypes = {
   children: PropTypes.node,
   href: PropTypes.string,
   className: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 Button.defaultProps = {
@@ -71,6 +74,7 @@ Button.defaultProps = {
   href: '#',
   icon: null,
   className: '',
+  onClick: () => {},
 };
 
 export default Button;

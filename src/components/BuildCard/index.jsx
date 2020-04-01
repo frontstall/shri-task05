@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
+import { ROUTES } from 'config';
+
 import './styles.scss';
 
 const Wrapper = ({
@@ -56,7 +58,7 @@ const BuildCard = ({
 
   return (
     <Wrapper
-      route={`/builds/${buildId}`}
+      route={`${ROUTES.builds}/${buildId}`}
       className={classNames}
       clickable={clickable}
     >

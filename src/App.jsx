@@ -5,6 +5,8 @@ import {
   Switch,
 } from 'react-router-dom';
 
+import { ROUTES } from 'config';
+
 import {
   BuildPage,
   HistoryPage,
@@ -16,16 +18,16 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={ROUTES.root}>
           <MainPage />
         </Route>
-        <Route path="/settings">
+        <Route path={ROUTES.settings}>
           <SettingsPage />
         </Route>
-        <Route path="/builds/:buildId">
+        <Route path={`${ROUTES.builds}:buildId"`}>
           <BuildPage />
         </Route>
-        <Route path="/builds/">
+        <Route path={ROUTES.builds}>
           <HistoryPage />
         </Route>
       </Switch>
