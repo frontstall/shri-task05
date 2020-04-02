@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   BuildCard,
@@ -12,19 +14,18 @@ import {
 } from 'components';
 import { footerRoutes, ROUTES } from 'config';
 
-import useHistory from './hooks';
-
 const {
   navigationRoutes,
   copyrightRoutes,
 } = footerRoutes;
 
+const mapStateToProps = ({ history }) => ({ history });
 
-const Builds = () => {
+const HistoryPage = ({ history }) => {
   const {
     builds,
-    loading,
-  } = useHistory();
+    isFetching,
+  } = history;
 
   return (
     <div className="MainLayout">
@@ -45,7 +46,7 @@ const Builds = () => {
       </HeaderUI.Container>
       <main className="Main MainLayout-Content">
         <div className="Main-Container">
-          <Pagination loading={loading}>
+          <Pagination isFetching={isFetching}>
             {builds.map(({
               buildId,
               status,
@@ -81,4 +82,11 @@ const Builds = () => {
   );
 };
 
-export default Builds;
+HistoryPage.propTypes = {
+  history: PropTypes.shape({
+    builds: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    isFetching: PropTypes.bool.isRequired,
+  }).isRequired,
+};
+
+export default connect(mapStateToProps)(HistoryPage);

@@ -7,7 +7,7 @@ import Button from 'components/Button';
 
 import './styles.scss';
 
-const Pagination = ({ className, children, loading = false }) => {
+const Pagination = ({ className, children, isFetching }) => {
   const classNames = cn(
     className,
     'Pagination',
@@ -24,9 +24,9 @@ const Pagination = ({ className, children, loading = false }) => {
         <Button
           className="Pagination-Button"
           size="s"
-          disabled="loading"
+          disabled="isFetching"
         >
-          {loading ? 'Loading...' : 'Show more'}
+          {isFetching ? 'Loading...' : 'Show more'}
         </Button>
       </ul>
 
@@ -37,13 +37,12 @@ const Pagination = ({ className, children, loading = false }) => {
 Pagination.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  loading: PropTypes.bool,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 Pagination.defaultProps = {
   className: '',
   children: '',
-  loading: false,
 };
 
 export default Pagination;

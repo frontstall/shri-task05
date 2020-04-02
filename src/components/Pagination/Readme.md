@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import BuildCard from '../BuildCard';
 
 <BrowserRouter>
-  <Pagination>
+  <Pagination isFetching={false}>
     <BuildCard
       buildId="1234"
       adaptive

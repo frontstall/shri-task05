@@ -22,7 +22,8 @@ module.exports = {
     'react',
   ],
   rules: {
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "no-param-reassign": ["error", { "props": false }],
   },
   settings: {
     'import/resolver': {
