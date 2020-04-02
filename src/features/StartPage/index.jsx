@@ -16,7 +16,7 @@ const {
   copyrightRoutes,
 } = footerRoutes;
 
-const EmptyPage = () => (
+const StartPage = () => (
   <div className="MainLayout">
     <HeaderUI.Container>
       <HeaderUI.Logo route={ROUTES.root}>
@@ -47,4 +47,4 @@ const EmptyPage = () => (
   </div>
 );
 
-export default EmptyPage;
+export default StartPage;

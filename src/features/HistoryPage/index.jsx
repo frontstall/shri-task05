@@ -20,7 +20,7 @@ const {
 } = footerRoutes;
 
 
-const HistoryPage = () => {
+const Builds = () => {
   const {
     builds,
     loading,
@@ -81,4 +81,4 @@ const HistoryPage = () => {
   );
 };
 
-export default HistoryPage;
+export default Builds;
