@@ -1,50 +1,13 @@
 import React from 'react';
 
-import {
-  Button,
-  Footer,
-  HeaderUI,
-  Heading,
-  Menu,
-  Navigation,
-  Placeholder,
-} from 'components';
-import { footerRoutes, ROUTES } from 'config';
+import EmptyPage from '../EmptyPage';
+import HistoryPage from '../HistoryPage';
 
-const {
-  navigationRoutes,
-  copyrightRoutes,
-} = footerRoutes;
+const MainPage = () => {
+  const useStore = () => ({ repoName: 'some repo', isFetching: false });
+  const { repoName, isFetching } = useStore();
 
-const MainPage = () => (
-  <div className="MainLayout">
-    <HeaderUI.Container>
-      <HeaderUI.Logo route={ROUTES.root}>
-        <Heading>
-          School CI server
-        </Heading>
-      </HeaderUI.Logo>
-      <HeaderUI.Menu>
-        <Menu>
-          <Button asLink size="s" icon="gear" href={ROUTES.settings}>
-            Settings
-          </Button>
-        </Menu>
-      </HeaderUI.Menu>
-    </HeaderUI.Container>
-    <main className="Main Main_aligned_center MainLayout-Content">
-      <div className="Main-Container">
-        <Placeholder
-          description="Configure repository connection and synchronization settings"
-          buttonConfig={{ text: 'Open settings', route: ROUTES.settings }}
-        />
-      </div>
-    </main>
-    <Footer>
-      <Navigation routes={navigationRoutes} />
-      <Navigation routes={copyrightRoutes} />
-    </Footer>
-  </div>
-);
+  return repoName ? <HistoryPage /> : <EmptyPage isFetching={isFetching} />;
+};
 
 export default MainPage;

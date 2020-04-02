@@ -9,7 +9,6 @@ import { ROUTES } from 'config';
 
 import {
   BuildPage,
-  HistoryPage,
   MainPage,
   SettingsPage,
 } from 'features';
