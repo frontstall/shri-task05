@@ -11,7 +11,18 @@ const getRepoSettings = async ({ onRequest, onSuccess, onError }) => {
   });
 };
 
+const getBuilds = async ({ onRequest, onSuccess, onError }) => {
+  await callApi({
+    method: 'GET',
+    url: API_ROUTES.builds,
+    onRequest,
+    onSuccess,
+    onError,
+  });
+};
+
 const API = {
+  getBuilds,
   getRepoSettings,
 };
 

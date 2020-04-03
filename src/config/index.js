@@ -28,6 +28,7 @@ export const ROUTES = {
 export const API_ROUTES = {
   root: `${API_ROOT}/`,
   settings: `${API_ROOT}/settings`,
+  builds: `${API_ROOT}/builds`,
 };
 
 export const DEFAULT_PERIOD = 600;

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import Button from 'components/Button';
+import Loader from 'components/Loader';
 
 import './styles.scss';
 
@@ -15,20 +16,24 @@ const Pagination = ({ className, children, isFetching }) => {
 
   return (
     <div className={classNames}>
-      <ul className="Pagination-List">
-        {Children.map(children, (child) => (
-          <li className="Pagination-ListItem">
-            {cloneElement(child)}
-          </li>
-        ))}
-        <Button
-          className="Pagination-Button"
-          size="s"
-          disabled="isFetching"
-        >
-          {isFetching ? 'Loading...' : 'Show more'}
-        </Button>
-      </ul>
+      {isFetching
+        ? <Loader size="m" className="Pagination-Loader" />
+        : (
+          <ul className="Pagination-List">
+            {Children.map(children, (child) => (
+              <li className="Pagination-ListItem">
+                {cloneElement(child)}
+              </li>
+            ))}
+            <Button
+              className="Pagination-Button"
+              size="s"
+              disabled="isFetching"
+            >
+              {isFetching ? 'Loading...' : 'Show more'}
+            </Button>
+          </ul>
+        )}
 
     </div>
   );

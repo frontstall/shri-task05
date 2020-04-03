@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import API from 'api/';
 
 const historySlice = createSlice({
   name: 'history',
@@ -8,15 +9,34 @@ const historySlice = createSlice({
     builds: [],
   },
   reducers: {
-    addBuilds(state, action) {
+    getBuildsRequest(state) {
       state.error = false;
+      state.isFetching = true;
+    },
+    getBuildsSuccess(state, action) {
       state.isFetching = false;
       const { payload } = action;
       state.builds.push(...payload);
     },
+    getBuildsFailure(state) {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
-export const { addBuilds } = historySlice.actions;
+export const {
+  getBuildsRequest,
+  getBuildsSuccess,
+  getBuildsFailure,
+} = historySlice.actions;
 
 export default historySlice.reducer;
+
+export const getBuilds = () => async (dispatch) => {
+  API.getBuilds({
+    onRequest: () => dispatch(getBuildsRequest()),
+    onSuccess: (data) => dispatch(getBuildsSuccess(data)),
+    onFailure: () => dispatch(getBuildsFailure()),
+  });
+};

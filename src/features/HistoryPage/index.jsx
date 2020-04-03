@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -14,6 +14,7 @@ import {
 import { footerRoutes, ROUTES } from 'config';
 import { openModal } from 'features/Modal/modalSlice';
 
+import { getBuilds } from './historySlice';
 import Popup from './Popup';
 
 
@@ -35,6 +36,9 @@ const HistoryPage = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getBuilds());
+  }, [dispatch]);
   const handleOpenModal = useCallback(() => dispatch(openModal()), [dispatch]);
 
   return (
