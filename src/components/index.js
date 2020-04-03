@@ -7,6 +7,7 @@ import HeaderUI from './HeaderUI';
 import Heading from './Heading';
 import Input from './Input';
 import InputGroup from './InputGroup';
+import Loader from './Loader';
 import Menu from './Menu';
 import Navigation from './Navigation';
 import Pagination from './Pagination';
@@ -23,6 +24,7 @@ export {
   Heading,
   Input,
   InputGroup,
+  Loader,
   Menu,
   Navigation,
   Pagination,
