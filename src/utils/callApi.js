@@ -16,7 +16,7 @@ const callApi = async ({
     onRequest();
     const response = await axios({ method, url, data });
 
-    onSuccess(response);
+    onSuccess(response.data);
   } catch (error) {
     onError(error);
   }
