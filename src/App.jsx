@@ -10,12 +10,15 @@ import { ROUTES } from 'config';
 import {
   BuildPage,
   MainPage,
+  Modal,
   SettingsPage,
 } from 'features';
+
 
 function App() {
   return (
     <Router>
+      <Modal />
       <Switch>
         <Route exact path={ROUTES.root}>
           <MainPage />

@@ -23,7 +23,7 @@ const Loader = ({
 };
 
 Loader.propTypes = {
-  size: PropTypes.oneOf(['s', 'max']),
+  size: PropTypes.oneOf(['s', 'm']),
   color: PropTypes.oneOf(['default', 'accent']),
   className: PropTypes.string,
 };

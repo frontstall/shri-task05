@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Button,
   Footer,
   HeaderUI,
   Heading,
+  Loader,
   Menu,
   Navigation,
   Placeholder,
@@ -16,7 +18,7 @@ const {
   copyrightRoutes,
 } = footerRoutes;
 
-const StartPage = () => (
+const StartPage = ({ isFetching }) => (
   <div className="MainLayout">
     <HeaderUI.Container>
       <HeaderUI.Logo route={ROUTES.root}>
@@ -34,10 +36,14 @@ const StartPage = () => (
     </HeaderUI.Container>
     <main className="Main Main_aligned_center MainLayout-Content">
       <div className="Main-Container">
-        <Placeholder
-          description="Configure repository connection and synchronization settings"
-          buttonConfig={{ text: 'Open settings', route: ROUTES.settings }}
-        />
+        {isFetching
+          ? <Loader />
+          : (
+            <Placeholder
+              description="Configure repository connection and synchronization settings"
+              buttonConfig={{ text: 'Open settings', route: ROUTES.settings }}
+            />
+          )}
       </div>
     </main>
     <Footer>
@@ -46,5 +52,9 @@ const StartPage = () => (
     </Footer>
   </div>
 );
+
+StartPage.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+};
 
 export default StartPage;

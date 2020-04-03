@@ -1,0 +1,21 @@
+.Modal {
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.Modal-Container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 485px;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  padding: 20px 18px;
+  background-color: #fff;
+  box-shadow: 0px 6px 16px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
+}

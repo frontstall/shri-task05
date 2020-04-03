@@ -9,6 +9,7 @@ import Input from './Input';
 import InputGroup from './InputGroup';
 import Loader from './Loader';
 import Menu from './Menu';
+import Modal from './Modal';
 import Navigation from './Navigation';
 import Pagination from './Pagination';
 import Placeholder from './Placeholder';
@@ -26,6 +27,7 @@ export {
   InputGroup,
   Loader,
   Menu,
+  Modal,
   Navigation,
   Pagination,
   Placeholder,

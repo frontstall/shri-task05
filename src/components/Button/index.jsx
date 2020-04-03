@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
@@ -6,7 +6,7 @@ import cn from 'classnames';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 
-const Button = ({
+const Button = memo(({
   size = 'm',
   color = 'default',
   asLink = false,
@@ -51,7 +51,7 @@ const Button = ({
         {buttonContent}
       </button>
     );
-};
+});
 
 Button.propTypes = {
   size: PropTypes.oneOf(['s', 'm']),

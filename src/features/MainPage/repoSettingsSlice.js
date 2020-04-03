@@ -37,8 +37,8 @@ export default repoSettings.reducer;
 
 export const getRepoSettings = () => async (dispatch) => {
   API.getRepoSettings({
-    onRequest: () => dispatch(getRepoSettingsRequest),
+    onRequest: () => dispatch(getRepoSettingsRequest()),
     onSuccess: (data) => dispatch(getRepoSettingsSuccess(data)),
-    onError: () => dispatch(getRepoSettingsFailure),
+    onError: () => dispatch(getRepoSettingsFailure()),
   });
 };
