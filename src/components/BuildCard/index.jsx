@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { ROUTES } from 'config';
+import { formatHash } from 'utils';
 
 import './styles.scss';
 
@@ -39,13 +40,14 @@ Wrapper.defaultProps = {
 const BuildCard = ({
   className,
   clickable = false,
-  buildId,
+  id,
+  buildNumber,
   adaptive = false,
   status,
-  commitName,
-  branch,
-  hash,
-  author,
+  commitMessage,
+  branchName,
+  commitHash,
+  authorName,
   date,
   duration,
 }) => {
@@ -58,30 +60,30 @@ const BuildCard = ({
 
   return (
     <Wrapper
-      route={`${ROUTES.build}/${buildId}`}
+      route={`${ROUTES.build}/${id}`}
       className={classNames}
       clickable={clickable}
     >
       <div className="Build-Info">
         <div className="Build-Heading">
           <h2 className="Build-Number">
-            {`#${buildId}`}
+            {`#${buildNumber}`}
           </h2>
           <p className="Build-Name">
-            {commitName}
+            {commitMessage}
           </p>
         </div>
         <div className="Build-Description">
           <p className="Build-CommitData">
             <span className="Build-Branch">
-              {branch}
+              {branchName}
             </span>
             <span className="Build-Hash">
-              {hash}
+              {formatHash(commitHash)}
             </span>
           </p>
           <span className="Build-Author">
-            {author}
+            {authorName}
           </span>
         </div>
       </div>
@@ -98,17 +100,18 @@ const BuildCard = ({
 };
 
 BuildCard.propTypes = {
+  adaptive: PropTypes.bool,
+  authorName: PropTypes.string.isRequired,
+  branchName: PropTypes.string.isRequired,
+  buildNumber: PropTypes.number.isRequired,
   className: PropTypes.string,
   clickable: PropTypes.bool,
-  buildId: PropTypes.string.isRequired,
-  adaptive: PropTypes.bool,
-  status: PropTypes.oneOf(['success', 'danger', 'warning']).isRequired,
-  commitName: PropTypes.string.isRequired,
-  branch: PropTypes.string.isRequired,
-  hash: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  commitHash: PropTypes.string.isRequired,
+  commitMessage: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  status: PropTypes.oneOf(['success', 'danger', 'warning']).isRequired,
 };
 
 BuildCard.defaultProps = {

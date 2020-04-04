@@ -21,9 +21,25 @@ const getBuilds = async ({ onRequest, onSuccess, onError }) => {
   });
 };
 
+const postCommitHash = async ({
+  onRequest,
+  onSuccess,
+  onError,
+  commitHash,
+}) => {
+  await callApi({
+    method: 'POST',
+    url: `${API_ROUTES.builds}/${commitHash}`,
+    onRequest,
+    onSuccess,
+    onError,
+  });
+};
+
 const API = {
   getBuilds,
   getRepoSettings,
+  postCommitHash,
 };
 
 export default API;

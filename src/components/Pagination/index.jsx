@@ -16,25 +16,21 @@ const Pagination = ({ className, children, isFetching }) => {
 
   return (
     <div className={classNames}>
-      {isFetching
-        ? <Loader size="m" className="Pagination-Loader" />
-        : (
-          <ul className="Pagination-List">
-            {Children.map(children, (child) => (
-              <li className="Pagination-ListItem">
-                {cloneElement(child)}
-              </li>
-            ))}
-            <Button
-              className="Pagination-Button"
-              size="s"
-              disabled="isFetching"
-            >
-              {isFetching ? 'Loading...' : 'Show more'}
-            </Button>
-          </ul>
-        )}
-
+      <ul className="Pagination-List">
+        {Children.map(children, (child) => (
+          <li className="Pagination-ListItem">
+            {cloneElement(child)}
+          </li>
+        ))}
+        {isFetching && <Loader size="m" className="Pagination-Loader" />}
+        <Button
+          className="Pagination-Button"
+          size="s"
+          disabled={isFetching}
+        >
+          {isFetching ? 'Loading...' : 'Show more'}
+        </Button>
+      </ul>
     </div>
   );
 };

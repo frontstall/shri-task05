@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { footerRoutes, ROUTES } from 'config';
+import { getStatus } from 'utils';
 import {
   BuildCard,
   Button,
@@ -11,7 +13,6 @@ import {
   Navigation,
   Pagination,
 } from 'components';
-import { footerRoutes, ROUTES } from 'config';
 import { openModal } from 'features/Modal/modalSlice';
 
 import { getBuilds } from './historySlice';
@@ -62,25 +63,27 @@ const HistoryPage = () => {
         <div className="Main-Container">
           <Pagination isFetching={isFetching}>
             {builds.map(({
-              buildId,
+              id,
               status,
-              commitName,
-              branch,
-              hash,
-              author,
-              date,
-              duration,
+              commitMessage,
+              branchName,
+              buildNumber,
+              commitHash,
+              authorName,
+              date = 'Not started',
+              duration = 'Not finished',
             }) => (
               <BuildCard
                 adaptive
+                buildNumber={buildNumber}
                 clickable
-                key={buildId}
-                buildId={buildId}
-                status={status}
-                commitName={commitName}
-                branch={branch}
-                hash={hash}
-                author={author}
+                key={id}
+                id={id}
+                status={getStatus(status)}
+                commitMessage={commitMessage}
+                branchName={branchName}
+                commitHash={commitHash}
+                authorName={authorName}
                 date={date}
                 duration={duration}
               />

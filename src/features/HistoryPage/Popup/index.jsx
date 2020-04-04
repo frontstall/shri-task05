@@ -19,10 +19,11 @@ const Popup = () => {
     value,
     error,
     close,
+    onSubmit,
   } = useForm();
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <Heading level={2} size="l" color="accent">
         New build
       </Heading>

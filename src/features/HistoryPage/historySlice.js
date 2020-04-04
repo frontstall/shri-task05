@@ -1,3 +1,5 @@
+import orderBy from 'lodash/orderBy';
+
 import { createSlice } from '@reduxjs/toolkit';
 import API from 'api/';
 
@@ -16,7 +18,7 @@ const historySlice = createSlice({
     getBuildsSuccess(state, action) {
       state.isFetching = false;
       const { payload } = action;
-      state.builds.push(...payload);
+      state.builds = orderBy(payload, ['buildNumber']);
     },
     getBuildsFailure(state) {
       state.isFetching = false;
