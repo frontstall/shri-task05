@@ -26,7 +26,7 @@ function App() {
         <Route path={ROUTES.settings}>
           <SettingsPage />
         </Route>
-        <Route path={`${ROUTES.build}:buildId"`}>
+        <Route path={`${ROUTES.build}/:id`}>
           <BuildPage />
         </Route>
       </Switch>

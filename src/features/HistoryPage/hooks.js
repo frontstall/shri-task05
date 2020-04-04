@@ -1,27 +1,33 @@
-const useHistory = () => ({
-  loading: false,
-  builds: [
-    {
-      buildId: '1234',
-      status: 'success',
-      commitName: 'add new feature',
-      branch: 'master',
-      hash: '9c9f0b9',
-      author: 'Kyle Sympson',
-      date: '21 янв, 03:06',
-      duration: '1 ч 20 мин',
-    },
-    {
-      buildId: '1235',
-      status: 'danger',
-      commitName: 'fix minor bug',
-      branch: 'master',
-      hash: '9c9f0b5',
-      author: 'Dan Abramov',
-      date: '21 янв, 03:06',
-      duration: '1 ч 20 мин',
-    },
-  ],
-});
+import { useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-export default useHistory;
+import { openModal } from 'features/Modal/modalSlice';
+import { getBuilds } from './historySlice';
+
+const useHistoryPage = () => {
+  const {
+    repoName,
+    builds,
+    isFetching,
+  } = useSelector(({ history, settings }) => ({
+    repoName: settings.name,
+    builds: history.builds,
+    isFetching: history.isFetching,
+  }));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBuilds());
+  }, [dispatch]);
+  const handleOpenModal = useCallback(() => dispatch(openModal()), [dispatch]);
+
+  return {
+    repoName,
+    builds,
+    isFetching,
+    handleOpenModal,
+  };
+};
+
+export default useHistoryPage;

@@ -10,6 +10,7 @@ import {
   Navigation,
 } from 'components';
 import { footerRoutes, ROUTES } from 'config';
+import { getStatus } from 'utils';
 
 import useBuild from './hooks';
 
@@ -21,22 +22,22 @@ const {
 
 const BuildPage = () => {
   const {
-    building,
+    id,
     buildLog,
-    buildId,
+    buildNumber,
     status,
-    commitName,
-    branch,
-    hash,
-    author,
-    date,
-    duration,
+    commitMessage,
+    branchName,
+    commitHash,
+    authorName,
+    start = 'Not started',
+    duration = 'Not finished',
   } = useBuild();
 
   return (
     <div className="MainLayout">
       <HeaderUI.Container>
-        <HeaderUI.Logo route={ROUTES.build}>
+        <HeaderUI.Logo route={ROUTES.root}>
           <Heading color="accent">
             philip1967/my-awesome-repo
           </Heading>
@@ -53,23 +54,26 @@ const BuildPage = () => {
       <main className="Main MainLayout-Content">
         <div className="BuildDetails">
           <div className="BuildDetails-Build Main-Container">
-            <BuildCard
-              key={buildId}
-              buildId={buildId}
-              status={status}
-              commitName={commitName}
-              branch={branch}
-              hash={hash}
-              author={author}
-              date={date}
-              duration={duration}
-            />
+            {status
+              ? (
+                <BuildCard
+                  key={id}
+                  id={id}
+                  status={getStatus(status)}
+                  commitMessage={commitMessage}
+                  branchName={branchName}
+                  commitHash={commitHash}
+                  authorName={authorName}
+                  date={start}
+                  duration={duration}
+                  buildNumber={buildNumber}
+                />
+              )
+              : 'loading'}
           </div>
           <div className="BuildDetails-Container">
             <pre className="BuildDetails-Flow">
-              {building
-                ? 'Building...'
-                : buildLog}
+              {buildLog}
             </pre>
           </div>
         </div>

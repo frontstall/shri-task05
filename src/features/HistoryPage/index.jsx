@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 
 import { footerRoutes, ROUTES } from 'config';
 import { getStatus } from 'utils';
@@ -13,11 +12,9 @@ import {
   Navigation,
   Pagination,
 } from 'components';
-import { openModal } from 'features/Modal/modalSlice';
 
-import { getBuilds } from './historySlice';
+import useHistoryPage from './hooks';
 import Popup from './Popup';
-
 
 const {
   navigationRoutes,
@@ -29,18 +26,8 @@ const HistoryPage = () => {
     repoName,
     builds,
     isFetching,
-  } = useSelector(({ history, settings }) => ({
-    repoName: settings.name,
-    builds: history.builds,
-    isFetching: history.isFetching,
-  }));
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getBuilds());
-  }, [dispatch]);
-  const handleOpenModal = useCallback(() => dispatch(openModal()), [dispatch]);
+    handleOpenModal,
+  } = useHistoryPage();
 
   return (
     <div className="MainLayout">
