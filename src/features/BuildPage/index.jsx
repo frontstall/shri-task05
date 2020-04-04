@@ -6,6 +6,7 @@ import {
   Footer,
   HeaderUI,
   Heading,
+  Loader,
   Menu,
   Navigation,
 } from 'components';
@@ -23,6 +24,7 @@ const {
 const BuildPage = () => {
   const {
     id,
+    repoName,
     buildLog,
     buildNumber,
     status,
@@ -32,6 +34,9 @@ const BuildPage = () => {
     authorName,
     start = 'Not started',
     duration = 'Not finished',
+    isFetching,
+    isLogFetching,
+    rebuild,
   } = useBuild();
 
   return (
@@ -39,12 +44,12 @@ const BuildPage = () => {
       <HeaderUI.Container>
         <HeaderUI.Logo route={ROUTES.root}>
           <Heading color="accent">
-            philip1967/my-awesome-repo
+            {repoName}
           </Heading>
         </HeaderUI.Logo>
         <HeaderUI.Menu>
           <Menu>
-            <Button size="s" icon="refresh">
+            <Button size="s" icon="refresh" onClick={rebuild}>
               Rebuild
             </Button>
             <Button asLink size="s" icon="gear" href={ROUTES.settings} />
@@ -54,26 +59,27 @@ const BuildPage = () => {
       <main className="Main MainLayout-Content">
         <div className="BuildDetails">
           <div className="BuildDetails-Build Main-Container">
-            {status
-              ? (
-                <BuildCard
-                  key={id}
-                  id={id}
-                  status={getStatus(status)}
-                  commitMessage={commitMessage}
-                  branchName={branchName}
-                  commitHash={commitHash}
-                  authorName={authorName}
-                  date={start}
-                  duration={duration}
-                  buildNumber={buildNumber}
-                />
-              )
-              : 'loading'}
+            {isFetching && <Loader className="BuildDetails-Loader" />}
+            {id && (
+            <BuildCard
+              key={id}
+              id={id}
+              status={getStatus(status)}
+              commitMessage={commitMessage}
+              branchName={branchName}
+              commitHash={commitHash}
+              authorName={authorName}
+              date={start}
+              duration={duration}
+              buildNumber={buildNumber}
+            />
+            )}
           </div>
           <div className="BuildDetails-Container">
             <pre className="BuildDetails-Flow">
-              {buildLog}
+              {isLogFetching
+                ? <Loader className="BuildDetails-Loader" />
+                : buildLog || 'Build log is not available yet.' }
             </pre>
           </div>
         </div>

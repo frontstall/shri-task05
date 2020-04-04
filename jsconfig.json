@@ -8,7 +8,8 @@
       "styles/*": ["styles/*"],
       "img/*": ["img/*"],
       "config/*": ["config/*"],
-      "api/*": ["api/*"]
+      "api/*": ["api/*"],
+      "hooks/*": ["hooks/*"]
     }
   }
 }

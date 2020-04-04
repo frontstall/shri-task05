@@ -22,7 +22,7 @@ const useForm = () => {
   const onSubmit = (evt) => {
     evt.preventDefault();
 
-    API.postCommitHash({
+    API.addNewBuild({
       onRequest: () => {
         setError(false);
         setLoading(true);

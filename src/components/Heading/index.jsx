@@ -24,13 +24,14 @@ const Heading = ({
 
 Heading.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7]),
   size: PropTypes.oneOf(['m', 'l', 'xl']),
   color: PropTypes.oneOf(['default', 'accent']),
 };
 
 Heading.defaultProps = {
+  children: '',
   className: '',
   level: 1,
   size: 'xl',

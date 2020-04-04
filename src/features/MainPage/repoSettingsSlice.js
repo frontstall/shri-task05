@@ -20,9 +20,9 @@ const repoSettings = createSlice({
       state.error = true;
     },
     getRepoSettingsSuccess(state, action) {
-      state.isFetching = false;
       state.name = action.payload.repoName;
       state.id = action.payload.id;
+      state.isFetching = false;
     },
   },
 });

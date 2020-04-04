@@ -21,7 +21,7 @@ const getBuilds = async ({ onRequest, onSuccess, onError }) => {
   });
 };
 
-const postCommitHash = async ({
+const addNewBuild = async ({
   onRequest,
   onSuccess,
   onError,
@@ -51,11 +51,27 @@ const getBuildDetails = async ({
   });
 };
 
+const getBuildLog = async ({
+  onRequest,
+  onSuccess,
+  onError,
+  id,
+}) => {
+  await callApi({
+    method: 'GET',
+    url: `${API_ROUTES.builds}/${id}/logs`,
+    onRequest,
+    onSuccess,
+    onError,
+  });
+};
+
 const API = {
   getBuildDetails,
+  getBuildLog,
   getBuilds,
   getRepoSettings,
-  postCommitHash,
+  addNewBuild,
 };
 
 export default API;
