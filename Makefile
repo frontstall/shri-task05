@@ -1,3 +1,6 @@
+install:
+	npm ci
+
 start-client:
 	npm run start
 
