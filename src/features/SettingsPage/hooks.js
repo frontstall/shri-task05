@@ -76,7 +76,7 @@ const useForm = () => {
 
     const data = {
       period: minToSec(interval) || DEFAULT_PERIOD,
-      repoUrl: repository,
+      fullRepoName: repository,
       buildCommand: command,
       mainBranch: branch,
     };
