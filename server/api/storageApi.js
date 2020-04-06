@@ -43,3 +43,34 @@ export const addBuild = ({
 
   return callApi({ method: 'POST', url: '/build/request', data });
 };
+
+export const startBuild = ({ buildId, dateTime }) => callApi({
+  method: 'POST',
+  url: '/build/start',
+  data: {
+    buildId,
+    dateTime,
+  },
+});
+
+export const finishBuild = ({
+  buildId,
+  dateTime,
+  success,
+  buildLog,
+}) => callApi({
+  method: 'POST',
+  url: '/build/finish',
+  data: {
+    buildId,
+    dateTime,
+    success,
+    buildLog,
+  },
+});
+
+export const cancelBuild = ({ buildId }) => callApi({
+  method: 'POST',
+  url: '/build/cancel',
+  data: { buildId },
+});

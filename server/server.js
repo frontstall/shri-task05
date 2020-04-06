@@ -1,19 +1,20 @@
 import Express from 'express';
 import morgan from 'morgan';
 import fs from 'fs';
-import del from 'del';
+import remove from 'del';
 import path from 'path';
 
 import * as storageApi from './api/storageApi';
 import * as githubApi from './api/githubApi';
-
 import {
   getPathToLocalRepo,
   getRepoName,
   getRepoUrl,
 } from './utils';
 
+const { promises: { mkdir } } = fs;
 const API_ROOT = '/api';
+const pathToTempDir = path.resolve(__dirname, './tmp');
 
 const initServer = (port) => {
   const app = new Express();
@@ -46,16 +47,17 @@ const initServer = (port) => {
 
       const repoName = getRepoName(fullRepoName);
       const repoUrl = getRepoUrl(fullRepoName);
+      const pathToLocalRepo = getPathToLocalRepo(repoName);
       const data = {
         buildCommand,
         mainBranch: mainBranch || 'master',
         period: parseInt(period, 10),
         repoName,
       };
-      const pathToLocalRepo = getPathToLocalRepo(repoName);
 
-      await del(pathToLocalRepo);
-      await fs.promises.mkdir(pathToLocalRepo);
+      await remove(pathToTempDir);
+      await mkdir(pathToTempDir);
+      await mkdir(pathToLocalRepo);
       await githubApi.clone(repoUrl, pathToLocalRepo);
       await storageApi.addConfig(data);
     } catch (error) {
