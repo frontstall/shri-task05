@@ -1,13 +1,13 @@
 import Express from 'express';
 import morgan from 'morgan';
-import Git from 'nodegit';
 import fs from 'fs';
 import del from 'del';
 import path from 'path';
 
+import * as storageApi from './api/storageApi';
+import * as githubApi from './api/githubApi';
+
 import {
-  callApi,
-  clone,
   getPathToLocalRepo,
   getRepoName,
   getRepoUrl,
@@ -56,8 +56,8 @@ const initServer = (port) => {
 
       await del(pathToLocalRepo);
       await fs.promises.mkdir(pathToLocalRepo);
-      await clone(repoUrl, pathToLocalRepo);
-      await callApi({ method: 'POST', url: '/conf', data });
+      await githubApi.clone(repoUrl, pathToLocalRepo);
+      await storageApi.addConfig(data);
     } catch (error) {
       next(error);
     }
@@ -66,7 +66,7 @@ const initServer = (port) => {
 
   app.get(`${API_ROOT}/settings`, async (req, res, next) => {
     try {
-      const { data } = await callApi({ method: 'GET', url: '/conf' });
+      const { data } = await storageApi.getConfig();
       res.send(data);
     } catch (error) {
       next(error);
@@ -75,7 +75,7 @@ const initServer = (port) => {
 
   app.delete(`${API_ROOT}/settings`, async (req, res, next) => {
     try {
-      await callApi({ method: 'DELETE', url: '/conf' });
+      await storageApi.deleteConfig();
       res.status(204).end();
     } catch (error) {
       next(error);
@@ -84,7 +84,7 @@ const initServer = (port) => {
 
   app.get(`${API_ROOT}/builds`, async (req, res, next) => {
     try {
-      const { data } = await callApi({ method: 'GET', url: '/build/list' });
+      const { data } = await storageApi.getBuilds();
       res.send(data);
     } catch (error) {
       next(error);
@@ -93,11 +93,8 @@ const initServer = (port) => {
 
   app.get(`${API_ROOT}/builds/:buildId`, async (req, res, next) => {
     try {
-      const { data } = await callApi({
-        method: 'GET',
-        url: '/build/details',
-        params: { buildId: req.params.buildId },
-      });
+      const { buildId } = req.params;
+      const { data } = await storageApi.getBuild(buildId);
       res.send(data);
     } catch (error) {
       next(error);
@@ -106,11 +103,8 @@ const initServer = (port) => {
 
   app.get(`${API_ROOT}/builds/:buildId/logs`, async (req, res, next) => {
     try {
-      const { data } = await callApi({
-        method: 'GET',
-        url: '/build/log',
-        params: { buildId: req.params.buildId },
-      });
+      const { buildId } = req.params;
+      const { data } = await storageApi.getLog(buildId);
       res.send(data);
     } catch (error) {
       next(error);
@@ -120,20 +114,20 @@ const initServer = (port) => {
   app.post(`${API_ROOT}/builds/:commitHash`, async (req, res, next) => {
     const { commitHash } = req.params;
     try {
-      const { data: { repoName, mainBranch } } = await callApi({ method: 'GET', url: '/conf' });
+      const { data: { repoName, mainBranch } } = await storageApi.getConfig();
       const pathToLocalRepo = getPathToLocalRepo(repoName);
-      const repo = await Git.Repository.open(pathToLocalRepo);
-      const commit = await repo.getCommit(commitHash);
-      const commitMessage = commit.message();
-      const authorName = commit.author().name();
+      const {
+        commitMessage,
+        authorName,
+      } = await githubApi.getCommitData(pathToLocalRepo, commitHash);
       const data = {
         commitMessage,
         commitHash,
-        branchName: mainBranch,
+        mainBranch,
         authorName,
       };
 
-      const response = await callApi({ method: 'POST', url: '/build/request', data });
+      const response = await storageApi.addBuild(data);
       res.send(response);
     } catch (error) {
       next(error);
