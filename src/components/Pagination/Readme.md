@@ -7,24 +7,26 @@ import BuildCard from '../BuildCard';
 <BrowserRouter>
   <Pagination isFetching={false}>
     <BuildCard
-      buildId="1234"
+      id="1234"
       adaptive
+      buildNumber={13}
       status="success"
-      commitName="add some awesome feature"
-      branch="master"
-      hash="9c9f0b9"
-      author="Dan Abramov"
+      commitMessage="add some awesome feature"
+      branchName="master"
+      commitHash="9c9f0b9"
+      authorName="Dan Abramov"
       date="21 янв, 03:06"
       duration="1 ч 20 мин"
     />
     <BuildCard
-      buildId="1235"
+      id="1235"
       adaptive
+      buildNumber={13}
       status="danger"
-      commitName="add some awesome feature"
-      branch="master"
-      hash="9c9f0b9"
-      author="Dan Abramov"
+      commitMessage="add some awesome feature"
+      branchName="master"
+      commitHash="9c9f0b9"
+      authorName="Dan Abramov"
       date="21 янв, 03:06"
       duration="1 ч 20 мин"
     />
