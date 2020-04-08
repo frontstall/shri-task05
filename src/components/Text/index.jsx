@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Text = ({
+const Text = memo(({
   color,
   className,
   children,
@@ -21,7 +21,7 @@ const Text = ({
       {children}
     </span>
   );
-};
+});
 
 Text.propTypes = {
   className: PropTypes.string,

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Footer = ({ className, children }) => {
+const Footer = memo(({ className, children }) => {
   const classNames = cn(
     className,
     'Footer',
@@ -18,7 +18,7 @@ const Footer = ({ className, children }) => {
       </div>
     </footer>
   );
-};
+});
 
 Footer.propTypes = {
   className: PropTypes.string,

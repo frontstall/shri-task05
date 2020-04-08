@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
@@ -7,7 +7,7 @@ import Button from 'components/Button';
 
 import './styles.scss';
 
-const Placeholder = ({ className, description, buttonConfig }) => {
+const Placeholder = memo(({ className, description, buttonConfig }) => {
   const classNames = cn(
     className,
     'Placeholder',
@@ -30,7 +30,7 @@ const Placeholder = ({ className, description, buttonConfig }) => {
       </Button>
     </div>
   );
-};
+});
 
 Placeholder.propTypes = {
   className: PropTypes.string,

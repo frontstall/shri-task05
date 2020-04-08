@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -9,7 +9,7 @@ import { formatHash } from 'utils';
 
 import './styles.scss';
 
-const Wrapper = ({
+const Wrapper = memo(({
   clickable,
   route = '#',
   className,
@@ -23,7 +23,7 @@ const Wrapper = ({
   return clickable
     ? <Link to={route} className={classNames}>{children}</Link>
     : <div className={classNames}>{children}</div>;
-};
+});
 
 Wrapper.propTypes = {
   className: PropTypes.string.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,7 @@ import cn from 'classnames';
 
 import './styles.scss';
 
-const Navigation = ({ routes, className }) => {
+const Navigation = memo(({ routes, className }) => {
   const classNames = cn(
     className,
     'Navigation',
@@ -23,7 +23,7 @@ const Navigation = ({ routes, className }) => {
       ))}
     </ul>
   );
-};
+});
 
 Navigation.propTypes = {
   className: PropTypes.string,

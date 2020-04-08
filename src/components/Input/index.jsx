@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Input = ({
+const Input = memo(({
   clearable = false,
   size = 's',
   align,
@@ -40,7 +40,7 @@ const Input = ({
       required={required}
     />
   );
-};
+});
 
 Input.propTypes = {
   clearable: PropTypes.bool,

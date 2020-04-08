@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Loader = ({
+const Loader = memo(({
   size = 'm',
   color = 'default',
   className,
@@ -20,7 +20,7 @@ const Loader = ({
   return (
     <div className={classNames} />
   );
-};
+});
 
 Loader.propTypes = {
   size: PropTypes.oneOf(['s', 'm']),

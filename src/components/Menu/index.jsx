@@ -1,11 +1,11 @@
-import React, { Children } from 'react';
+import React, { Children, memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Menu = ({ className, children }) => {
+const Menu = memo(({ className, children }) => {
   const classNames = cn(
     className,
     'Menu',
@@ -20,7 +20,7 @@ const Menu = ({ className, children }) => {
       ))}
     </ul>
   );
-};
+});
 
 Menu.propTypes = {
   className: PropTypes.string,

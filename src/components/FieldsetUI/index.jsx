@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Fieldset = ({ className, children, disabled = 'false' }) => {
+const Fieldset = memo(({ className, children, disabled = 'false' }) => {
   const classNames = cn(
     className,
     'Fieldset',
@@ -16,7 +16,7 @@ const Fieldset = ({ className, children, disabled = 'false' }) => {
       {children}
     </fieldset>
   );
-};
+});
 
 Fieldset.propTypes = {
   className: PropTypes.string,
@@ -30,11 +30,11 @@ Fieldset.defaultProps = {
   disabled: false,
 };
 
-const Legend = ({ children }) => (
+const Legend = memo(({ children }) => (
   <p className="Fieldset-Legend">
     {children}
   </p>
-);
+));
 
 Legend.propTypes = {
   children: PropTypes.node,
@@ -44,11 +44,11 @@ Legend.defaultProps = {
   children: '',
 };
 
-const Row = ({ children }) => (
+const Row = memo(({ children }) => (
   <div className="Fieldset-Row">
     {children}
   </div>
-);
+));
 
 Row.propTypes = {
   children: PropTypes.node,

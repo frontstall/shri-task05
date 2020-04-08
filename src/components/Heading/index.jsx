@@ -1,11 +1,11 @@
-import { createElement } from 'react';
+import { createElement, memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Heading = ({
+const Heading = memo(({
   className,
   level = 1,
   size = 'xl',
@@ -20,7 +20,7 @@ const Heading = ({
   );
 
   return createElement(`h${level}`, { className: classNames }, children);
-};
+});
 
 Heading.propTypes = {
   className: PropTypes.string,

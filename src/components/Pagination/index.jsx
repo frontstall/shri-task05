@@ -1,4 +1,4 @@
-import React, { cloneElement, Children } from 'react';
+import React, { Children, memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
@@ -8,7 +8,7 @@ import Loader from 'components/Loader';
 
 import './styles.scss';
 
-const Pagination = ({ className, children, isFetching }) => {
+const Pagination = memo(({ className, children, isFetching }) => {
   const classNames = cn(
     className,
     'Pagination',
@@ -19,7 +19,7 @@ const Pagination = ({ className, children, isFetching }) => {
       <ul className="Pagination-List">
         {Children.map(children, (child) => (
           <li className="Pagination-ListItem">
-            {cloneElement(child)}
+            {child}
           </li>
         ))}
         {isFetching && <Loader size="m" className="Pagination-Loader" />}
@@ -33,7 +33,7 @@ const Pagination = ({ className, children, isFetching }) => {
       </ul>
     </div>
   );
-};
+});
 
 Pagination.propTypes = {
   className: PropTypes.string,

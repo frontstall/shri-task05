@@ -1,11 +1,11 @@
-import React, { cloneElement, Children } from 'react';
+import React, { cloneElement, Children, memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const ButtonGroup = ({
+const ButtonGroup = memo(({
   children,
   className,
 }) => {
@@ -21,7 +21,7 @@ const ButtonGroup = ({
       ))}
     </div>
   );
-};
+});
 
 ButtonGroup.propTypes = {
   children: PropTypes.node.isRequired,

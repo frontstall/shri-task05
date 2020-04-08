@@ -1,4 +1,4 @@
-import React, { cloneElement, Children } from 'react';
+import React, { cloneElement, Children, memo } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,7 @@ import cn from 'classnames';
 
 import './styles.scss';
 
-const Container = ({ className, children }) => {
+const Container = memo(({ className, children }) => {
   const classNames = cn(
     className,
     'Header',
@@ -19,7 +19,7 @@ const Container = ({ className, children }) => {
       </div>
     </header>
   );
-};
+});
 
 Container.propTypes = {
   className: PropTypes.string,
@@ -31,11 +31,11 @@ Container.defaultProps = {
   children: '',
 };
 
-const Logo = ({ children, route = '#' }) => (
+const Logo = memo(({ children, route = '#' }) => (
   <Link to={route} className="Header-Logo">
     {children}
   </Link>
-);
+));
 
 Logo.propTypes = {
   children: PropTypes.node,

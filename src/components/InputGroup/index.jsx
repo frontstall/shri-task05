@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import cn from 'classnames';
@@ -7,7 +7,7 @@ import Input from 'components/Input';
 
 import './styles.scss';
 
-const InputGroup = ({
+const InputGroup = memo(({
   clearable = false,
   onChange,
   value = '',
@@ -50,7 +50,7 @@ const InputGroup = ({
       </div>
     </div>
   );
-};
+});
 
 InputGroup.propTypes = {
   clearable: PropTypes.bool,
