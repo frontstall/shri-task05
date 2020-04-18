@@ -1,6 +1,9 @@
 import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import size from 'lodash/size';
+import orderBy from 'lodash/orderBy';
+
 import { useRepoName } from 'hooks';
 import { openModal } from 'features/Modal/modalSlice';
 import { getBuilds } from './historySlice';
@@ -18,16 +21,23 @@ const useHistoryPage = () => {
 
   const dispatch = useDispatch();
 
+  const orderedBuilds = orderBy(builds, 'buildNumber', 'desc');
+
   useEffect(() => {
     dispatch(getBuilds());
   }, [dispatch]);
   const handleOpenModal = useCallback(() => dispatch(openModal()), [dispatch]);
 
+  const fetch = useCallback(() => {
+    dispatch(getBuilds(size(builds)));
+  }, [builds, dispatch]);
+
   return {
     repoName,
-    builds,
-    isFetching,
+    builds: orderedBuilds,
+    fetch,
     handleOpenModal,
+    isFetching,
   };
 };
 

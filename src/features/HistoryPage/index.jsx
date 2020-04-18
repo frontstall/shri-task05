@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { footerRoutes, ROUTES } from 'config';
-import { getStatus } from 'utils';
+import {
+  getStatus,
+  formatTime,
+  formatDate,
+} from 'utils';
 import {
   BuildCard,
   Button,
@@ -23,10 +27,11 @@ const {
 
 const HistoryPage = () => {
   const {
-    repoName,
     builds,
-    isFetching,
+    fetch,
     handleOpenModal,
+    isFetching,
+    repoName,
   } = useHistoryPage();
 
   return (
@@ -48,7 +53,7 @@ const HistoryPage = () => {
       </HeaderUI.Container>
       <main className="Main MainLayout-Content">
         <div className="Main-Container">
-          <Pagination isFetching={isFetching}>
+          <Pagination isFetching={isFetching} fetch={fetch}>
             {builds.map(({
               id,
               status,
@@ -57,8 +62,8 @@ const HistoryPage = () => {
               buildNumber,
               commitHash,
               authorName,
-              date = 'Not started',
-              duration = 'Not finished',
+              start,
+              duration,
             }) => (
               <BuildCard
                 adaptive
@@ -71,8 +76,8 @@ const HistoryPage = () => {
                 branchName={branchName}
                 commitHash={commitHash}
                 authorName={authorName}
-                date={date}
-                duration={duration}
+                date={formatDate(start)}
+                duration={formatTime(duration)}
               />
             ))}
           </Pagination>

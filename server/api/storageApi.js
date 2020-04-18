@@ -8,7 +8,7 @@ export const addConfig = (data) => callApi({
 
 export const deleteConfig = () => callApi({ method: 'DELETE', url: '/conf' });
 
-export const getBuilds = (offset = 0, limit = 25) => callApi({
+export const getBuilds = (offset = 0, limit = 10) => callApi({
   method: 'GET',
   url: '/build/list',
   params: { offset, limit },
@@ -55,7 +55,7 @@ export const startBuild = ({ buildId, dateTime }) => callApi({
 
 export const finishBuild = ({
   buildId,
-  dateTime,
+  duration,
   success,
   buildLog,
 }) => callApi({
@@ -63,7 +63,7 @@ export const finishBuild = ({
   url: '/build/finish',
   data: {
     buildId,
-    dateTime,
+    duration,
     success,
     buildLog,
   },

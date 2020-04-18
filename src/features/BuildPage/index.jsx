@@ -11,7 +11,7 @@ import {
   Navigation,
 } from 'components';
 import { footerRoutes, ROUTES } from 'config';
-import { getStatus } from 'utils';
+import { getStatus, formatTime } from 'utils';
 
 import useBuild from './hooks';
 
@@ -32,8 +32,8 @@ const BuildPage = () => {
     branchName,
     commitHash,
     authorName,
-    start = 'Not started',
-    duration = 'Not finished',
+    start,
+    duration,
     isFetching,
     isLogFetching,
     rebuild,
@@ -70,7 +70,7 @@ const BuildPage = () => {
               commitHash={commitHash}
               authorName={authorName}
               date={start}
-              duration={duration}
+              duration={formatTime(duration)}
               buildNumber={buildNumber}
             />
             )}

@@ -11,10 +11,15 @@ const getRepoSettings = async ({ onRequest, onSuccess, onError }) => {
   });
 };
 
-const getBuilds = async ({ onRequest, onSuccess, onError }) => {
+const getBuilds = async ({
+  onRequest,
+  onSuccess,
+  onError,
+  offset = 0,
+}) => {
   await callApi({
     method: 'GET',
-    url: API_ROUTES.builds,
+    url: `${API_ROUTES.builds}?offset=${offset}`,
     onRequest,
     onSuccess,
     onError,

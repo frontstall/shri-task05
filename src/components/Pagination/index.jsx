@@ -8,7 +8,12 @@ import Loader from 'components/Loader';
 
 import './styles.scss';
 
-const Pagination = memo(({ className, children, isFetching }) => {
+const Pagination = memo(({
+  className,
+  children,
+  isFetching,
+  fetch,
+}) => {
   const classNames = cn(
     className,
     'Pagination',
@@ -27,6 +32,7 @@ const Pagination = memo(({ className, children, isFetching }) => {
           className="Pagination-Button"
           size="s"
           disabled={isFetching}
+          onClick={fetch}
         >
           {isFetching ? 'Loading...' : 'Show more'}
         </Button>
@@ -39,6 +45,7 @@ Pagination.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   isFetching: PropTypes.bool.isRequired,
+  fetch: PropTypes.func.isRequired,
 };
 
 Pagination.defaultProps = {

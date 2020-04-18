@@ -1,14 +1,14 @@
-import orderBy from 'lodash/orderBy';
+import merge from 'lodash/merge';
 
 import { createSlice } from '@reduxjs/toolkit';
-import API from 'api/';
+import API from 'api';
 
 const historySlice = createSlice({
   name: 'history',
   initialState: {
     error: false,
     isFetching: false,
-    builds: [],
+    builds: {},
   },
   reducers: {
     getBuildsRequest(state) {
@@ -18,7 +18,8 @@ const historySlice = createSlice({
     getBuildsSuccess(state, action) {
       state.isFetching = false;
       const { payload } = action;
-      state.builds = orderBy(payload, ['buildNumber']);
+      const builds = payload.reduce((acc, build) => ({ ...acc, [build.id]: build }), {});
+      state.builds = merge(state.builds, builds);
     },
     getBuildsFailure(state) {
       state.isFetching = false;
@@ -35,10 +36,11 @@ export const {
 
 export default historySlice.reducer;
 
-export const getBuilds = () => async (dispatch) => {
+export const getBuilds = (offset = 0) => async (dispatch) => {
   API.getBuilds({
     onRequest: () => dispatch(getBuildsRequest()),
     onSuccess: (data) => dispatch(getBuildsSuccess(data)),
     onFailure: () => dispatch(getBuildsFailure()),
+    offset,
   });
 };

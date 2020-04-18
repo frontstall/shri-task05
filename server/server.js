@@ -14,9 +14,10 @@ import {
 
 const { promises: { mkdir } } = fs;
 const API_ROOT = '/api';
-const pathToTempDir = path.resolve(__dirname, './tmp');
 
-const initServer = (port) => {
+const initServer = (port, queue) => {
+  queue.init();
+  const pathToTempDir = path.resolve(__dirname, './tmp');
   const app = new Express();
   const logger = morgan('combined');
   app.use(logger);
@@ -85,8 +86,9 @@ const initServer = (port) => {
   });
 
   app.get(`${API_ROOT}/builds`, async (req, res, next) => {
+    const { offset, limit } = req.query;
     try {
-      const { data } = await storageApi.getBuilds();
+      const { data } = await storageApi.getBuilds(offset, limit);
       res.send(data);
     } catch (error) {
       next(error);
@@ -106,8 +108,8 @@ const initServer = (port) => {
   app.get(`${API_ROOT}/builds/:buildId/logs`, async (req, res, next) => {
     try {
       const { buildId } = req.params;
-      const { data } = await storageApi.getLog(buildId);
-      res.send(data);
+      const log = await storageApi.getLog(buildId);
+      res.send(log);
     } catch (error) {
       next(error);
     }
@@ -116,7 +118,7 @@ const initServer = (port) => {
   app.post(`${API_ROOT}/builds/:commitHash`, async (req, res, next) => {
     const { commitHash } = req.params;
     try {
-      const { data: { repoName, mainBranch } } = await storageApi.getConfig();
+      const { data: { repoName, mainBranch, buildCommand } } = await storageApi.getConfig();
       const pathToLocalRepo = getPathToLocalRepo(repoName);
       const {
         commitMessage,
@@ -130,6 +132,12 @@ const initServer = (port) => {
       };
 
       const response = await storageApi.addBuild(data);
+      queue.addBuild({
+        id: response.data.id,
+        buildCommand,
+        branchName: mainBranch,
+        repoName,
+      });
       res.send(response);
     } catch (error) {
       next(error);
