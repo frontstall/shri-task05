@@ -1,10 +1,6 @@
 import axios from 'axios';
 import https from 'https';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-const { TOKEN } = process.env;
 const DB_API = 'https://hw.shri.yandex/api/';
 
 const callApi = async ({
@@ -16,7 +12,7 @@ const callApi = async ({
 }) => {
   axios.defaults.httpsAgent = new https.Agent({ rejectUnauthorized: false });
   axios.defaults.baseURL = DB_API;
-  axios.defaults.headers.common.Authorization = `Bearer ${TOKEN}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${process.env.TOKEN}`;
 
   try {
     const response = await axios({

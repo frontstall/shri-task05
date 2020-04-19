@@ -40,12 +40,15 @@ export default class Queue {
       repoName,
     } = last(this.builds);
     this.state = STATES.building;
+
     await this.api.startBuild({ buildId, dateTime: new Date() });
+
     const {
       success,
       buildLog,
       duration,
     } = await this.builder({ buildCommand, branchName, repoName });
+
     await this.api.finishBuild({
       buildId,
       success,

@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-const build = ({ buildCommand, branchName, repoName }) => new Promise((resolve) => {
+const builder = ({ buildCommand, branchName, repoName }) => new Promise((resolve) => {
   console.log(`building '${branchName}' in '${repoName}' with '${buildCommand}'`);
   const duration = faker.random.number({ min: 10 * 1000, max: 2 * 60 * 60 * 1000 });
   const buildLog = faker.lorem.paragraph(10);
@@ -11,4 +11,4 @@ const build = ({ buildCommand, branchName, repoName }) => new Promise((resolve) 
   }, 3000);
 });
 
-export default build;
+export default builder;

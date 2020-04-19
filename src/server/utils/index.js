@@ -2,12 +2,14 @@ import callApi from './callApi';
 import getPathToLocalRepo from './getPathToLocalRepo';
 import getRepoUrl from './getRepoUrl';
 import getRepoName from './getRepoName';
-import build from './build';
+import builder from './builder';
+import Queue from './Queue';
 
 export {
-  build,
+  builder,
   callApi,
   getPathToLocalRepo,
   getRepoUrl,
   getRepoName,
+  Queue,
 };
