@@ -1,14 +1,18 @@
 import React, { cloneElement, Children, memo } from 'react';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const ButtonGroup = memo(({
+interface IButtonGroup {
+  className?: string,
+  children: React.ReactElement,
+}
+
+const ButtonGroup: React.FC<IButtonGroup> = memo(({
   children,
   className,
-}) => {
+}: IButtonGroup) => {
   const classNames = cn(
     className,
     'ButtonGroup',
@@ -22,14 +26,5 @@ const ButtonGroup = memo(({
     </div>
   );
 });
-
-ButtonGroup.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-
-ButtonGroup.defaultProps = {
-  className: '',
-};
 
 export default ButtonGroup;

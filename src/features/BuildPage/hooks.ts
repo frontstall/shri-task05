@@ -1,18 +1,20 @@
 import { useEffect, useCallback } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import API from 'api';
 import { ROUTES } from 'config';
-import { useRepoName } from 'hooks';
+import { useRepoName, useAppDispatch } from 'hooks';
 import { getRepoSettings } from 'features/MainPage/repoSettingsSlice';
+import { TRootState } from 'reducers';
+
 
 import { getBuildDetails, getBuildLog } from './buildSlice';
 
 const useBuild = () => {
   const history = useHistory();
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getRepoSettings());
@@ -21,7 +23,7 @@ const useBuild = () => {
   }, [dispatch, id]);
 
   const repoName = useRepoName();
-  const buildDetails = useSelector(({ build }) => build);
+  const buildDetails = useSelector<TRootState, { commitHash: string }>(({ build }) => build);
   const { commitHash } = buildDetails;
 
   const rebuild = useCallback(() => {
@@ -30,6 +32,7 @@ const useBuild = () => {
       onSuccess: ({ data }) => {
         history.push(`${ROUTES.build}/${data.id}`);
       },
+      onError: () => {},
       commitHash,
     });
   }, [commitHash, history]);

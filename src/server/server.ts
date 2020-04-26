@@ -1,4 +1,4 @@
-import Express from 'express';
+import express, { Request, Response } from 'express';
 import morgan from 'morgan';
 import fs from 'fs';
 import remove from 'del';
@@ -11,17 +11,18 @@ import {
   getRepoName,
   getRepoUrl,
 } from './utils';
+import { TQueue } from './utils/Queue';
 
 const { promises: { mkdir } } = fs;
 const API_ROOT = '/api';
 
-const initServer = (port, queue) => {
+const initServer = (port: number, queue: TQueue) => {
   queue.init();
   const pathToTempDir = path.resolve(__dirname, './tmp');
-  const app = new Express();
+  const app = express();
   const logger = morgan('combined');
   app.use(logger);
-  app.use(Express.json());
+  app.use(express.json());
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'OPTIONS, DELETE, POST, GET');
@@ -30,14 +31,21 @@ const initServer = (port, queue) => {
   });
 
   if (process.env.NODE_ENV === 'production') {
-    app.use(Express.static(path.resolve(__dirname, '..', 'build')));
+    app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
-    app.get('/', (req, res) => {
+    app.get<{}, {}>('/', (req, res) => {
       res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
     });
   }
 
-  app.post(`${API_ROOT}/settings`, async (req, res, next) => {
+  interface ISettings {
+    period: string,
+    fullRepoName: string,
+    buildCommand: string,
+    mainBranch: string,
+  }
+
+  app.post<{}, {}, ISettings>(`${API_ROOT}/settings`, async (req, res, next) => {
     try {
       const {
         period,
@@ -85,7 +93,12 @@ const initServer = (port, queue) => {
     }
   });
 
-  app.get(`${API_ROOT}/builds`, async (req, res, next) => {
+  interface IBuildsQuery {
+    offset?: number,
+    limit?: number,
+  }
+
+  app.get<{}, {}, {}, IBuildsQuery>(`${API_ROOT}/builds`, async (req, res, next) => {
     const { offset, limit } = req.query;
     try {
       const { data } = await storageApi.getBuilds(offset, limit);
@@ -143,8 +156,8 @@ const initServer = (port, queue) => {
       next(error);
     }
   });
-
-  app.use((error, req, res, next) => { //eslint-disable-line
+  // @ts-ignore
+  app.use((error, req, res, next) => {
     console.log(error);
     res.status(500).end();
   });

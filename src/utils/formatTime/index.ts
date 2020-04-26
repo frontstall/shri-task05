@@ -10,7 +10,7 @@ const units = {
   seconds: 'sec',
 };
 
-const formatTime = (timestamp, fallback = 'Not finished') => {
+const formatTime = (timestamp: number, fallback = 'Not finished') => {
   if (timestamp === undefined) return fallback;
 
   if (timestamp >= timeInMs.hour) {

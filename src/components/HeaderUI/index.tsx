@@ -1,12 +1,16 @@
 import React, { cloneElement, Children, memo } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Container = memo(({ className, children }) => {
+interface IContainer {
+  className?: string,
+  children?: React.ReactElement,
+}
+
+const Container: React.FC<IContainer> = memo(({ className, children }) => {
   const classNames = cn(
     className,
     'Header',
@@ -21,45 +25,26 @@ const Container = memo(({ className, children }) => {
   );
 });
 
-Container.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-};
+interface ILogo {
+  children?: React.ReactNode,
+  route?: string,
+}
 
-Container.defaultProps = {
-  className: '',
-  children: '',
-};
-
-const Logo = memo(({ children, route = '#' }) => (
+const Logo = memo(({ children, route = '#' }: ILogo) => (
   <Link to={route} className="Header-Logo">
     {children}
   </Link>
 ));
 
-Logo.propTypes = {
-  children: PropTypes.node,
-  route: PropTypes.string,
-};
+interface IMenu {
+  children: React.ReactElement,
+}
 
-Logo.defaultProps = {
-  children: '',
-  route: '#',
-};
-
-const Menu = ({ children }) => (
+const Menu = ({ children }: IMenu) => (
   children && Children.map(children, (child) => (
     cloneElement(child, { className: 'Header-Menu' })
   ))
 );
-
-Menu.propTypes = {
-  children: PropTypes.node,
-};
-
-Menu.defaultProps = {
-  children: '',
-};
 
 const HeaderUI = {
   Container,

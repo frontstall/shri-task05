@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
@@ -7,7 +6,21 @@ import Input from 'components/Input';
 
 import './styles.scss';
 
-const InputGroup = memo(({
+interface IInputGroup {
+  clearable?: boolean,
+  onChange: () => void,
+  value?: string,
+  placeholder?: string,
+  disabled?: boolean,
+  className?: string,
+  id: string,
+  children?: React.ReactNode,
+  onClear?: () => void,
+  inline?: boolean,
+  required?: boolean,
+}
+
+const InputGroup: React.FC<IInputGroup> = memo(({
   clearable = false,
   onChange,
   value = '',
@@ -51,31 +64,5 @@ const InputGroup = memo(({
     </div>
   );
 });
-
-InputGroup.propTypes = {
-  clearable: PropTypes.bool,
-  onChange: PropTypes.func,
-  value: PropTypes.string,
-  placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  className: PropTypes.string,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  children: PropTypes.node.isRequired,
-  onClear: PropTypes.func,
-  inline: PropTypes.bool,
-  required: PropTypes.bool,
-};
-
-InputGroup.defaultProps = {
-  clearable: false,
-  onChange: () => {},
-  onClear: () => {},
-  value: '',
-  placeholder: '',
-  disabled: false,
-  className: '',
-  inline: false,
-  required: false,
-};
 
 export default InputGroup;

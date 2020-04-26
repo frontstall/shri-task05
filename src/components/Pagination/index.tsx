@@ -1,5 +1,4 @@
 import React, { Children, memo } from 'react';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
@@ -8,7 +7,14 @@ import Loader from 'components/Loader';
 
 import './styles.scss';
 
-const Pagination = memo(({
+interface IPagination {
+  className?: string,
+  children?: React.ReactNode,
+  isFetching: boolean,
+  fetch: () => void,
+}
+
+const Pagination: React.FC<IPagination> = memo(({
   className,
   children,
   isFetching,
@@ -40,17 +46,5 @@ const Pagination = memo(({
     </div>
   );
 });
-
-Pagination.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-  isFetching: PropTypes.bool.isRequired,
-  fetch: PropTypes.func.isRequired,
-};
-
-Pagination.defaultProps = {
-  className: '',
-  children: '',
-};
 
 export default Pagination;

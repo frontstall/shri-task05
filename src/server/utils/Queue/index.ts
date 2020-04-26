@@ -73,3 +73,5 @@ export default class Queue {
     await this.build();
   }
 }
+
+export type TQueue = InstanceType<typeof Queue>;

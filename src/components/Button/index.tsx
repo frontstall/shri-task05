@@ -1,12 +1,24 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import cn from 'classnames';
 
 import './styles.scss';
-import { Link } from 'react-router-dom';
 
-const Button = memo(({
+interface IButton {
+  size?: 's' | 'm',
+  color?: 'default' | 'accent',
+  asLink?: boolean,
+  type?: 'button' | 'submit',
+  icon?: 'gear' | 'run' | 'refresh',
+  children?: React.ReactNode,
+  href?: string,
+  className?: string,
+  onClick?: () => void,
+  disabled?: boolean
+}
+
+const Button: React.FC<IButton> = memo(({
   size = 'm',
   color = 'default',
   asLink = false,
@@ -16,6 +28,7 @@ const Button = memo(({
   href = '#',
   className,
   onClick,
+  disabled = false,
 }) => {
   const classNames = cn(
     className,
@@ -47,34 +60,11 @@ const Button = memo(({
         className={classNames}
         type={type}
         onClick={onClick}
+        disabled={disabled}
       >
         {buttonContent}
       </button>
     );
 });
-
-Button.propTypes = {
-  size: PropTypes.oneOf(['s', 'm']),
-  color: PropTypes.oneOf(['default', 'accent']),
-  asLink: PropTypes.bool,
-  type: PropTypes.oneOf(['button', 'submit']),
-  icon: PropTypes.oneOf(['gear', 'run', 'refresh']),
-  children: PropTypes.node,
-  href: PropTypes.string,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-};
-
-Button.defaultProps = {
-  size: 'm',
-  color: 'default',
-  asLink: false,
-  type: 'button',
-  children: '',
-  href: '#',
-  icon: null,
-  className: '',
-  onClick: () => {},
-};
 
 export default Button;

@@ -4,6 +4,8 @@ import assign from 'lodash/assign';
 
 import API from 'api';
 
+import { TAppDispatch } from '../..';
+
 const buildSlice = createSlice({
   name: 'build',
   initialState: {
@@ -11,6 +13,7 @@ const buildSlice = createSlice({
     isFetching: false,
     isLogFetching: false,
     buildLog: '',
+    commitHash: '',
   },
   reducers: {
     getBuildDetailsRequest(state) {
@@ -52,20 +55,20 @@ export const {
 
 export default buildSlice.reducer;
 
-export const getBuildDetails = (id) => async (dispatch) => {
+export const getBuildDetails = (id?: string) => async (dispatch: TAppDispatch) => {
   API.getBuildDetails({
     onRequest: () => dispatch(getBuildDetailsRequest()),
     onSuccess: (data) => dispatch(getBuildDetailsSuccess(data)),
-    onFailure: () => dispatch(getBuildDetailsFailure()),
+    onError: () => dispatch(getBuildDetailsFailure()),
     id,
   });
 };
 
-export const getBuildLog = (id) => async (dispatch) => {
+export const getBuildLog = (id?: string) => async (dispatch: TAppDispatch) => {
   API.getBuildLog({
     onRequest: () => dispatch(getBuildLogRequest()),
     onSuccess: (data) => dispatch(getBuildLogSuccess(data)),
-    onFailure: () => dispatch(getBuildLogFailure()),
+    onError: () => dispatch(getBuildLogFailure()),
     id,
   });
 };

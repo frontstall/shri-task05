@@ -1,11 +1,15 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Footer = memo(({ className, children }) => {
+interface IFooter {
+  className?: string,
+  children?: React.ReactNode,
+}
+
+const Footer: React.FC<IFooter> = memo(({ className, children }) => {
   const classNames = cn(
     className,
     'Footer',
@@ -19,15 +23,5 @@ const Footer = memo(({ className, children }) => {
     </footer>
   );
 });
-
-Footer.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-};
-
-Footer.defaultProps = {
-  className: '',
-  children: '',
-};
 
 export default Footer;

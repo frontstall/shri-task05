@@ -1,11 +1,15 @@
 import React, { Children, memo } from 'react';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Menu = memo(({ className, children }) => {
+interface IMenu {
+  className?: string,
+  children?: React.ReactNode,
+}
+
+const Menu: React.FC<IMenu> = memo(({ className, children }) => {
   const classNames = cn(
     className,
     'Menu',
@@ -21,15 +25,5 @@ const Menu = memo(({ className, children }) => {
     </ul>
   );
 });
-
-Menu.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-};
-
-Menu.defaultProps = {
-  className: '',
-  children: '',
-};
 
 export default Menu;

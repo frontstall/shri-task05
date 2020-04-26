@@ -1,11 +1,16 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Loader = memo(({
+interface ILoader {
+  size?: 's'| 'm',
+  color?:'default' | 'accent',
+  className?: string,
+}
+
+const Loader: React.FC<ILoader> = memo(({
   size = 'm',
   color = 'default',
   className,
@@ -21,17 +26,5 @@ const Loader = memo(({
     <div className={classNames} />
   );
 });
-
-Loader.propTypes = {
-  size: PropTypes.oneOf(['s', 'm']),
-  color: PropTypes.oneOf(['default', 'accent']),
-  className: PropTypes.string,
-};
-
-Loader.defaultProps = {
-  size: 'm',
-  color: 'default',
-  className: '',
-};
 
 export default Loader;

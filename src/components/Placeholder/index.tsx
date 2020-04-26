@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
@@ -7,7 +6,20 @@ import Button from 'components/Button';
 
 import './styles.scss';
 
-const Placeholder = memo(({ className, description, buttonConfig }) => {
+interface IPlaceholder {
+  className?: string,
+  description: string,
+  buttonConfig: {
+    text: string,
+    route: string,
+  }
+}
+
+const Placeholder: React.FC<IPlaceholder> = memo(({
+  className,
+  description,
+  buttonConfig,
+}) => {
   const classNames = cn(
     className,
     'Placeholder',
@@ -31,18 +43,5 @@ const Placeholder = memo(({ className, description, buttonConfig }) => {
     </div>
   );
 });
-
-Placeholder.propTypes = {
-  className: PropTypes.string,
-  description: PropTypes.string.isRequired,
-  buttonConfig: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    route: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-Placeholder.defaultProps = {
-  className: '',
-};
 
 export default Placeholder;

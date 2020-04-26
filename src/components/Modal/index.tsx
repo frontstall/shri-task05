@@ -1,11 +1,15 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Modal = memo(({ className, children }) => {
+interface IModal {
+  className?: string,
+  children: React.ReactNode,
+}
+
+const Modal: React.FC<IModal> = memo(({ className, children }) => {
   const classNames = cn(
     className,
     'Modal',
@@ -21,14 +25,5 @@ const Modal = memo(({ className, children }) => {
     </div>
   );
 });
-
-Modal.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-
-Modal.defaultProps = {
-  className: '',
-};
 
 export default Modal;

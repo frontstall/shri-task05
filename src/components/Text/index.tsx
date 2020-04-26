@@ -1,11 +1,16 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Text = memo(({
+interface IText {
+  className?: string,
+  color?: 'danger' | 'default',
+  children: React.ReactNode,
+}
+
+const Text: React.FC<IText> = memo(({
   color,
   className,
   children,
@@ -22,16 +27,5 @@ const Text = memo(({
     </span>
   );
 });
-
-Text.propTypes = {
-  className: PropTypes.string,
-  color: PropTypes.oneOf(['danger', 'default']),
-  children: PropTypes.node.isRequired,
-};
-
-Text.defaultProps = {
-  className: '',
-  color: 'default',
-};
 
 export default Text;

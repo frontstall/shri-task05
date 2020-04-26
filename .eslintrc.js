@@ -8,6 +8,7 @@ module.exports = {
     'airbnb',
     'react-app'
   ],
+  parser: '@typescript-eslint/parser',
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -20,17 +21,14 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
+    '@typescript-eslint',
     'react',
+    'react-hooks'
   ],
   rules: {
-    "react/button-has-type": "off",
-    "no-param-reassign": ["error", { "props": false }],
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        "paths": ["src"],
-      },
-    },
+    'react/button-has-type': 'off',
+    'react/prop-types': 'off',
+    'no-param-reassign': ['error', { 'props': false }],
+    'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
   },
 };

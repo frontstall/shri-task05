@@ -1,12 +1,19 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import './styles.scss';
 
-const Navigation = memo(({ routes, className }) => {
+interface INavigation {
+  routes: Array<{
+    route: string,
+    name: string
+  }>,
+  className?: string,
+}
+
+const Navigation: React.FC<INavigation> = memo(({ routes, className }) => {
   const classNames = cn(
     className,
     'Navigation',
@@ -24,17 +31,5 @@ const Navigation = memo(({ routes, className }) => {
     </ul>
   );
 });
-
-Navigation.propTypes = {
-  className: PropTypes.string,
-  routes: PropTypes.arrayOf(PropTypes.shape({
-    route: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
-};
-
-Navigation.defaultProps = {
-  className: '',
-};
 
 export default Navigation;

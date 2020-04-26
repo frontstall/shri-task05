@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+
+import { useAppDispatch } from 'hooks';
 
 import { getRepoSettings } from './repoSettingsSlice';
 import StartPage from '../StartPage';
@@ -7,7 +9,7 @@ import HistoryPage from '../HistoryPage';
 
 
 const MainPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getRepoSettings());
   }, [dispatch]);

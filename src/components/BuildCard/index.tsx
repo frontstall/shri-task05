@@ -1,15 +1,21 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import cn from 'classnames';
 
 import { ROUTES } from 'config';
-import { formatHash } from 'utils';
+import { formatHash, STATUSES } from 'utils';
 
 import './styles.scss';
 
-const Wrapper = memo(({
+interface IWrapper {
+  className: string,
+  clickable: boolean,
+  route?: string,
+  children: React.ReactNode,
+}
+
+const Wrapper: React.FC<IWrapper> = memo(({
   clickable,
   route = '#',
   className,
@@ -25,17 +31,20 @@ const Wrapper = memo(({
     : <div className={classNames}>{children}</div>;
 });
 
-Wrapper.propTypes = {
-  className: PropTypes.string.isRequired,
-  clickable: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  route: PropTypes.string,
-};
-
-Wrapper.defaultProps = {
-  clickable: false,
-  route: '#',
-};
+interface IBuildCard {
+  className: string,
+  clickable?: boolean,
+  id: string,
+  buildNumber: number,
+  adaptive?: boolean,
+  status: typeof STATUSES[keyof typeof STATUSES],
+  commitMessage: string,
+  branchName: string,
+  commitHash: string,
+  authorName: string,
+  date: string,
+  duration: string,
+}
 
 const BuildCard = ({
   className,
@@ -50,7 +59,7 @@ const BuildCard = ({
   authorName,
   date,
   duration,
-}) => {
+}: IBuildCard) => {
   const classNames = cn(
     className,
     'Build',
@@ -97,27 +106,6 @@ const BuildCard = ({
       </div>
     </Wrapper>
   );
-};
-
-BuildCard.propTypes = {
-  adaptive: PropTypes.bool,
-  authorName: PropTypes.string.isRequired,
-  branchName: PropTypes.string.isRequired,
-  buildNumber: PropTypes.number.isRequired,
-  className: PropTypes.string,
-  clickable: PropTypes.bool,
-  commitHash: PropTypes.string.isRequired,
-  commitMessage: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  duration: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  status: PropTypes.oneOf(['success', 'danger', 'warning']).isRequired,
-};
-
-BuildCard.defaultProps = {
-  adaptive: false,
-  className: '',
-  clickable: false,
 };
 
 export default BuildCard;

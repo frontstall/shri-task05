@@ -1,10 +1,10 @@
 import { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { closeModal } from 'features/Modal/modalSlice';
 import API from 'api';
 import { ROUTES } from 'config';
+import { useAppDispatch } from 'hooks';
 
 const useForm = () => {
   const [commitHash, setCommitHash] = useState();
@@ -16,7 +16,7 @@ const useForm = () => {
   const reset = () => {
     setCommitHash('');
   };
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const close = useCallback(() => dispatch(closeModal()), [dispatch]);
   const onSubmit = (evt) => {

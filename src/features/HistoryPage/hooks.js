@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import size from 'lodash/size';
 import orderBy from 'lodash/orderBy';
 
-import { useRepoName } from 'hooks';
+import { useRepoName, useAppDispatch } from 'hooks';
 import { openModal } from 'features/Modal/modalSlice';
 import { getBuilds } from './historySlice';
 
@@ -19,7 +19,7 @@ const useHistoryPage = () => {
 
   const repoName = useRepoName();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const orderedBuilds = orderBy(builds, 'buildNumber', 'desc');
 
