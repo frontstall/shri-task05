@@ -24,7 +24,7 @@ export default class Queue {
     const buildsToBuild = builds
       .filter(({ status }) => this.statuses.includes(status));
     const sortedBuilds = orderBy(buildsToBuild, 'buildNumber', 'desc');
-    this.builds.push(...sortedBuilds);
+    this.builds = sortedBuilds;
     this.state = STATES.idle;
   }
 
