@@ -6,7 +6,7 @@ module.exports = {
   },
   extends: [
     'airbnb',
-    'react-app'
+    'react-app',
   ],
   parser: '@typescript-eslint/parser',
   globals: {
@@ -21,7 +21,6 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    '@typescript-eslint',
     'react',
     'react-hooks'
   ],

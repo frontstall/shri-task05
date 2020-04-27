@@ -20,7 +20,7 @@ const ButtonGroup: React.FC<IButtonGroup> = memo(({
 
   return (
     <div className={classNames}>
-      {Children.map(children, (child) => (
+      {children && Children.map(children, (child) => (
         cloneElement(child, { className: 'ButtonGroup-Item' })
       ))}
     </div>

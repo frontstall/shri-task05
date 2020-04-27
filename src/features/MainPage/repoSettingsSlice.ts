@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import API from 'api';
+import { TAppDispatch } from 'index';
 
 const repoSettings = createSlice({
   name: 'settings',
@@ -35,7 +36,7 @@ export const {
 
 export default repoSettings.reducer;
 
-export const getRepoSettings = () => async (dispatch) => {
+export const getRepoSettings = () => async (dispatch: TAppDispatch) => {
   API.getRepoSettings({
     onRequest: () => dispatch(getRepoSettingsRequest()),
     onSuccess: (data) => dispatch(getRepoSettingsSuccess(data)),

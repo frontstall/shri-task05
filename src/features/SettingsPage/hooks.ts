@@ -23,25 +23,25 @@ const useForm = () => {
   const fieldsData = {
     [FIELDS.repository]: {
       value: repository,
-      onChange: (evt) => {
+      onChange: (evt: React.ChangeEvent<HTMLInputElement>) => {
         setRepository(evt.target.value);
       },
     },
     [FIELDS.command]: {
       value: command,
-      onChange: (evt) => {
+      onChange: (evt: React.ChangeEvent<HTMLInputElement>) => {
         setCommand(evt.target.value);
       },
     },
     [FIELDS.branch]: {
       value: branch,
-      onChange: (evt) => {
+      onChange: (evt: React.ChangeEvent<HTMLInputElement>) => {
         setBranch(evt.target.value);
       },
     },
     [FIELDS.interval]: {
       value: interval,
-      onChange: (evt) => {
+      onChange: (evt: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = evt.target;
         if (!(/^\d+$/.test(value)) && value) return;
         setInterval(evt.target.value);
@@ -49,10 +49,11 @@ const useForm = () => {
     },
   };
 
-  const getValue = (fieldName) => fieldsData[fieldName].value;
-  const getHandler = (fieldName) => fieldsData[fieldName].onChange;
-  const clear = (fieldName) => {
+  const getValue = (fieldName: keyof typeof fieldsData) => fieldsData[fieldName].value;
+  const getHandler = (fieldName: keyof typeof fieldsData) => fieldsData[fieldName].onChange;
+  const clear = (fieldName: keyof typeof fieldsData) => {
     const setValue = getHandler(fieldName);
+    // @ts-ignore
     setValue({ target: { value: '' } });
   };
 
@@ -71,7 +72,7 @@ const useForm = () => {
     setError(true);
   };
 
-  const onSubmit = (evt) => {
+  const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const data = {

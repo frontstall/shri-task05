@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 
 import { Modal as ModalWrapper } from 'components';
 import { HistoryPagePopup } from 'features/HistoryPage';
+import { TRootState } from 'reducers';
 
 const Modal = () => {
-  const { isOpen } = useSelector((state) => state.modal);
+  const { isOpen } = useSelector<TRootState, { isOpen: boolean }>((state) => state.modal);
 
   return (
     isOpen && (

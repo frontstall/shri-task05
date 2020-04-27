@@ -6,7 +6,7 @@ import './styles.scss';
 
 interface IFieldset {
   className?: string,
-  children: React.ReactElement,
+  children:React.ReactNodeArray,
   disabled?: boolean,
 }
 

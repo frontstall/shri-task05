@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import API from 'api';
+import API, { IBuild } from 'api';
 import { ROUTES } from 'config';
 import { useRepoName, useAppDispatch } from 'hooks';
 import { getRepoSettings } from 'features/MainPage/repoSettingsSlice';
@@ -23,7 +23,8 @@ const useBuild = () => {
   }, [dispatch, id]);
 
   const repoName = useRepoName();
-  const buildDetails = useSelector<TRootState, { commitHash: string }>(({ build }) => build);
+  // @ts-ignore
+  const buildDetails = useSelector<TRootState, IBuild>(({ build }) => build);
   const { commitHash } = buildDetails;
 
   const rebuild = useCallback(() => {

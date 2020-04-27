@@ -13,7 +13,6 @@ const buildSlice = createSlice({
     isFetching: false,
     isLogFetching: false,
     buildLog: '',
-    commitHash: '',
   },
   reducers: {
     getBuildDetailsRequest(state) {

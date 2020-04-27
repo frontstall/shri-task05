@@ -1,10 +1,37 @@
-import { callApi } from 'utils';
+import { callApi, STATUSES } from 'utils';
 import { API_ROUTES } from 'config';
 import { HTTP_METHODS } from 'utils/callApi';
 
+
+export interface IBuild {
+  id: string,
+  configurationId: string,
+  buildNumber: number,
+  commitMessage: string,
+  commitHash: string,
+  branchName: string,
+  authorName: string,
+  status: typeof STATUSES[keyof typeof STATUSES],
+  start: string,
+  duration: number,
+}
+
 interface IApiActions {
   onRequest: () => void,
-  onSuccess: () => void,
+  onError: () => void,
+}
+
+interface IRepoSettings {
+  id: string,
+  repoName: string,
+  buildCommand: string,
+  mainBranch: string,
+  period: 0,
+}
+
+interface IGetRepoSettings {
+  onRequest: () => void,
+  onSuccess: (repoSettings: IRepoSettings) => void,
   onError: () => void,
 }
 
@@ -12,7 +39,7 @@ const getRepoSettings = async ({
   onRequest,
   onSuccess,
   onError,
-}: IApiActions) => {
+}: IGetRepoSettings) => {
   await callApi({
     method: HTTP_METHODS.GET,
     url: API_ROUTES.settings,
@@ -24,6 +51,7 @@ const getRepoSettings = async ({
 
 interface IGetBuilds extends IApiActions {
   offset?: number,
+  onSuccess: (builds: Array<IBuild>) => void,
 }
 
 const getBuilds = async ({

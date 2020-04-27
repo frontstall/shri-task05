@@ -8,7 +8,7 @@ import './styles.scss';
 
 interface IInputGroup {
   clearable?: boolean,
-  onChange: () => void,
+  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void,
   value?: string,
   placeholder?: string,
   disabled?: boolean,

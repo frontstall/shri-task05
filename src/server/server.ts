@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import morgan from 'morgan';
 import fs from 'fs';
 import remove from 'del';
@@ -150,6 +150,7 @@ const initServer = (port: number, queue: TQueue) => {
         buildCommand,
         branchName: mainBranch,
         repoName,
+        status: response.data.status,
       });
       res.send(response);
     } catch (error) {

@@ -32,7 +32,7 @@ const Wrapper: React.FC<IWrapper> = memo(({
 });
 
 interface IBuildCard {
-  className: string,
+  className?: string,
   clickable?: boolean,
   id: string,
   buildNumber: number,

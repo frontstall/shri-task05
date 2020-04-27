@@ -42,6 +42,8 @@ const Popup = () => {
           </InputGroup>
         </FieldsetUI.Row>
         <FieldsetUI.Row>
+          {/*
+          //@ts-ignore */}
           <ButtonGroup>
             <Button
               type="submit"

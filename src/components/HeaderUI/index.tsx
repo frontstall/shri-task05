@@ -7,7 +7,7 @@ import './styles.scss';
 
 interface IContainer {
   className?: string,
-  children?: React.ReactElement,
+  children?: React.ReactElement | React.ReactNode,
 }
 
 const Container: React.FC<IContainer> = memo(({ className, children }) => {
@@ -26,11 +26,11 @@ const Container: React.FC<IContainer> = memo(({ className, children }) => {
 });
 
 interface ILogo {
-  children?: React.ReactNode,
+  children?: React.ReactElement,
   route?: string,
 }
 
-const Logo = memo(({ children, route = '#' }: ILogo) => (
+const Logo: React.FC<ILogo> = memo(({ children, route = '#' }) => (
   <Link to={route} className="Header-Logo">
     {children}
   </Link>
@@ -39,9 +39,10 @@ const Logo = memo(({ children, route = '#' }: ILogo) => (
 interface IMenu {
   children: React.ReactElement,
 }
-
-const Menu = ({ children }: IMenu) => (
+// @ts-ignore
+const Menu: React.FC<IMenu> = ({ children }) => (
   children && Children.map(children, (child) => (
+    // @ts-ignore
     cloneElement(child, { className: 'Header-Menu' })
   ))
 );

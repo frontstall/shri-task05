@@ -2,14 +2,43 @@ import orderBy from 'lodash/orderBy';
 import isEmpty from 'lodash/isEmpty';
 import last from 'lodash/last';
 
+import statuses from 'server/config';
+
+import * as storageApi from '../../api/storageApi';
+import build from '../builder';
+
 const STATES = {
   building: 'building',
   idle: 'idle',
   fetching: 'fetching',
 };
 
+interface IBuild {
+  id: string,
+  branchName: string,
+  status: string,
+  buildCommand: string,
+  repoName: string,
+}
+
 export default class Queue {
-  constructor(api, builder, statusesToBuild) {
+  public statuses: typeof statuses
+
+  public state: typeof STATES[keyof typeof STATES]
+
+  public builds: IBuild[]
+
+  public api: typeof storageApi
+
+  public currentBuild: null | number
+
+  public builder: typeof build
+
+  constructor(
+    api: typeof storageApi,
+    builder: typeof build,
+    statusesToBuild: typeof statuses,
+  ) {
     this.api = api;
     this.state = STATES.idle;
     this.currentBuild = null;
@@ -20,7 +49,7 @@ export default class Queue {
 
   getBuilds = async () => {
     this.state = STATES.fetching;
-    const { data: builds } = await this.api.getBuilds();
+    const { data: builds }: { data: Array<IBuild> } = await this.api.getBuilds();
     const buildsToBuild = builds
       .filter(({ status }) => this.statuses.includes(status));
     const sortedBuilds = orderBy(buildsToBuild, 'buildNumber', 'desc');
@@ -35,10 +64,10 @@ export default class Queue {
 
     const {
       id: buildId,
-      buildCommand,
       branchName,
+      buildCommand,
       repoName,
-    } = last(this.builds);
+    } = last(this.builds) as IBuild;
     this.state = STATES.building;
 
     await this.api.startBuild({ buildId, dateTime: new Date() });
@@ -47,7 +76,7 @@ export default class Queue {
       success,
       buildLog,
       duration,
-    } = await this.builder({ buildCommand, branchName, repoName });
+    } = await this.builder({ branchName, repoName, buildCommand });
 
     await this.api.finishBuild({
       buildId,
@@ -63,8 +92,8 @@ export default class Queue {
     }
   }
 
-  addBuild = (build) => {
-    this.builds.unshift(build);
+  addBuild = (currentBuild: IBuild) => {
+    this.builds.unshift(currentBuild);
     this.build();
   }
 

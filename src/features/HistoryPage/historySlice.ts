@@ -1,7 +1,8 @@
 import merge from 'lodash/merge';
 
 import { createSlice } from '@reduxjs/toolkit';
-import API from 'api';
+import API, { IBuild } from 'api';
+import { TAppDispatch } from 'index';
 
 const historySlice = createSlice({
   name: 'history',
@@ -17,7 +18,7 @@ const historySlice = createSlice({
     },
     getBuildsSuccess(state, action) {
       state.isFetching = false;
-      const { payload } = action;
+      const { payload }: { payload: Array<IBuild> } = action;
       const builds = payload.reduce((acc, build) => ({ ...acc, [build.id]: build }), {});
       state.builds = merge(state.builds, builds);
     },
@@ -36,11 +37,11 @@ export const {
 
 export default historySlice.reducer;
 
-export const getBuilds = (offset = 0) => async (dispatch) => {
+export const getBuilds = (offset = 0) => async (dispatch: TAppDispatch) => {
   API.getBuilds({
     onRequest: () => dispatch(getBuildsRequest()),
-    onSuccess: (data) => dispatch(getBuildsSuccess(data)),
-    onFailure: () => dispatch(getBuildsFailure()),
+    onSuccess: (data: Array<IBuild>) => dispatch(getBuildsSuccess(data)),
+    onError: () => dispatch(getBuildsFailure()),
     offset,
   });
 };

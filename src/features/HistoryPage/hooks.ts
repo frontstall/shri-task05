@@ -6,13 +6,15 @@ import orderBy from 'lodash/orderBy';
 
 import { useRepoName, useAppDispatch } from 'hooks';
 import { openModal } from 'features/Modal/modalSlice';
+import { TRootState } from 'reducers';
+
 import { getBuilds } from './historySlice';
 
 const useHistoryPage = () => {
   const {
     builds,
     isFetching,
-  } = useSelector(({ history }) => ({
+  } = useSelector<TRootState, {builds: {}, isFetching: boolean}>(({ history }) => ({
     builds: history.builds,
     isFetching: history.isFetching,
   }));

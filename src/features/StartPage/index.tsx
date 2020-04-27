@@ -13,12 +13,16 @@ import {
 } from 'components';
 import { footerRoutes, ROUTES } from 'config';
 
+interface IStartPage {
+  isFetching: boolean,
+}
+
 const {
   navigationRoutes,
   copyrightRoutes,
 } = footerRoutes;
 
-const StartPage = ({ isFetching }) => (
+const StartPage: React.FC<IStartPage> = ({ isFetching }) => (
   <div className="MainLayout">
     <HeaderUI.Container>
       <HeaderUI.Logo route={ROUTES.root}>
