@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+
+import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers';
 
 import App from './App';
@@ -18,3 +20,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
+
+serviceWorker.register();
